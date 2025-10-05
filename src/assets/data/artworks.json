@@ -1,0 +1,96 @@
+[
+  {
+    "id": "artwork-1",
+    "isNew": true,  
+    "code": "MCA-001",  
+    "title": {
+      "fr": "Masque Traditionnel",
+      "en": "Traditional Mask",
+      "wo": "Masque bu Cosaan"
+    },
+    "artist": {
+      "fr": "Artisan anonyme",
+      "en": "Anonymous artisan",
+      "wo": "Artisan bu tuuti tur"
+    },
+    "period": {
+      "fr": "XIXe siècle",
+      "en": "19th century",
+      "wo": "Gànnaar 19"
+    },
+    "description": {
+      "fr": "Ce masque cérémoniel représente les esprits ancestraux et était utilisé lors des rituels importants de la communauté.",
+      "en": "This ceremonial mask represents ancestral spirits and was used during important community rituals.",
+      "wo": "Masque boobu dafay wone ay tuur yu bàyyi te dañu ko jëfandikoo ci àytu yu mag ci reewum."
+    },
+    "history": {
+      "fr": "Sculpté à la main dans du bois d'acajou, ce masque témoigne de l'excellence des artisans de l'époque...",
+      "en": "Hand-carved from mahogany wood, this mask demonstrates the excellence of craftsmen of that era...",
+      "wo": "Mbind mu des ci garab acajou, masque boobu dafay won ni artisans yu mag nekk..."
+    },
+    "cultural": {
+      "fr": "Dans la culture locale, les masques servent de pont entre le monde visible et invisible...",
+      "en": "In local culture, masks serve as a bridge between the visible and invisible worlds...",
+      "wo": "Ci aadaa ñu, masque yo dañuy jëfandikoo ngir yëgal aduna yu gis ak yu gis dara..."
+    },
+    "image": "/assets/images/42828.jpg",
+    "audio": {
+      "fr": "/assets/audio/welcome/en.mp3",
+      "en": "/assets/audio/welcome/en.mp3",
+      "wo": "/assets/audio/welcome/en.mp3"
+    },
+      "video": {
+      "fr": "/videos/artwork-1-fr.mp4",
+      "en": "/videos/artwork-1-en.mp4",
+      "wo": "/videos/artwork-1-wo.mp4"
+    },
+    "model3d": null
+     
+  },
+  {
+    "id": "artwork-2",
+    "code": "MCA-002",
+    "title": {
+      "fr": "Poterie Ancienne",
+      "en": "Ancient Pottery",
+      "wo": "Ndaani bu Gon"
+    },
+    "artist": {
+      "fr": "Collectif de potières",
+      "en": "Collective of potters",
+      "wo": "Mbooleem potiers"
+    },
+    "period": {
+      "fr": "XVIIIe siècle",
+      "en": "18th century",
+      "wo": "Gànnaar 18"
+    },
+    "description": {
+      "fr": "Cette poterie ornée de motifs géométriques servait à conserver les céréales et symbolisait la prospérité.",
+      "en": "This pottery adorned with geometric patterns was used to store cereals and symbolized prosperity.",
+      "wo": "Ndaani boobu bu am morom geometric dañu ko jëfandikoo ngir tëj cereale te dafa wone neexal."
+    },
+    "history": {
+      "fr": "Fabriquée selon des techniques ancestrales transmises de génération en génération...",
+      "en": "Made using ancestral techniques passed down through generations...",
+      "wo": "Def ci yoon yu bàyyi yu dellusi ci benn générations..."
+    },
+    "cultural": {
+      "fr": "Les motifs représentent les liens familiaux et la continuité des traditions...",
+      "en": "The patterns represent family ties and the continuity of traditions...",
+      "wo": "Morom yooyu dañuy wone njëkkal mbokk ak continuité aada yu bàyyi..."
+    },
+    "image": "/images/artworks/artwork-2.jpg",
+    "audio": {
+      "fr": "/audio/descriptions/artwork-2-fr.mp3",
+      "en": "/audio/descriptions/artwork-2-en.mp3",
+      "wo": "/audio/descriptions/artwork-2-wo.mp3"
+    },
+       "video": {
+      "fr": "/videos/artwork-2-fr.mp4",
+      "en": "/videos/artwork-2-en.mp4",
+      "wo": "/videos/artwork-2-wo.mp4"
+    },
+    "model3d": null
+  }
+]

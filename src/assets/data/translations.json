@@ -1,0 +1,285 @@
+{
+  "welcome": {
+    "title": {
+      "fr": "Bienvenue au MCA",
+      "en": "Welcome to MCA",
+      "wo": "Dalal ak diam ci MCA"
+    },
+    "subtitle": {
+      "fr": "Choisissez votre langue pour commencer",
+      "en": "Choose your language to begin",
+      "wo": "Taan sa làkk ngir tàmbalee"
+    },
+    "tapToEnter": {
+      "fr": "Toucher pour entrer",
+      "en": "Tap to enter",
+      "wo": "Tëgg ngir dugg"
+    },
+    "audioHint": {
+      "fr": "🎧 Utilisez des écouteurs pour une meilleure expérience",
+      "en": "🎧 Use headphones for better experience",
+      "wo": "🎧 Jëfandikoo ay écouteur ngir gën a xam"
+    }
+  },
+  "navigation": {
+    "home": {
+      "fr": "Accueil",
+      "en": "Home",
+      "wo": "Këru kër"
+    },
+    "gallery": {
+      "fr": "Galerie",
+      "en": "Gallery",
+      "wo": "Galeriin"
+    },
+    "scan": {
+      "fr": "Scanner",
+      "en": "Scan",
+      "wo": "Scan"
+    }
+  },
+  "search": {
+    "placeholder": {
+      "fr": "Rechercher une œuvre...",
+      "en": "Search for an artwork...",
+      "wo": "Seet benn nataal..."
+    },
+    "noResults": {
+      "fr": "Aucune œuvre trouvée",
+      "en": "No artwork found",
+      "wo": "Amul nataal"
+    },
+    "noResultsFor": {
+      "fr": "Aucun résultat pour",
+      "en": "No results for",
+      "wo": "Amul résultat ci"
+    },
+    "reset": {
+      "fr": "Réinitialiser la recherche",
+      "en": "Reset search",
+      "wo": "Dellusil seet bi"
+    }
+  },
+  "scanner": {
+    "title": {
+      "fr": "Scanner un QR Code",
+      "en": "Scan a QR Code",
+      "wo": "Scan QR Code"
+    },
+    "instructions": {
+      "fr": "Pointez votre caméra vers le QR code de l'œuvre",
+      "en": "Point your camera at the artwork's QR code",
+      "wo": "Wóorul sa kamera ci QR code bi ci nataal bi"
+    },
+    "tabQR": {
+      "fr": "Scanner QR Code",
+      "en": "Scan QR Code",
+      "wo": "Dugal QR Code"
+    },
+    "tabCode": {
+      "fr": "Entrer un code",
+      "en": "Enter a code",
+      "wo": "Dugal code"
+    },
+    "start": {
+      "fr": "Démarrer le scan",
+      "en": "Start scanning",
+      "wo": "Tàmbalee scan"
+    },
+    "stop": {
+      "fr": "Arrêter",
+      "en": "Stop",
+      "wo": "Taxaw"
+    },
+    "scanning": {
+      "fr": "Recherche d'un QR code...",
+      "en": "Searching for QR code...",
+      "wo": "Dañuy seet QR code..."
+    },
+    "error": {
+      "fr": "Erreur lors du scan",
+      "en": "Scan error",
+      "wo": "Njumte ci scan"
+    }
+  },
+  "code": {
+    "title": {
+      "fr": "Entrez le code de l'œuvre",
+      "en": "Enter the artwork code",
+      "wo": "Dugal code bi nataal"
+    },
+    "hint": {
+      "fr": "Le code se trouve sur le cartel près de l'œuvre",
+      "en": "The code is on the label near the artwork",
+      "wo": "Code bi nekk ci cartel bu jëkk nataal bi"
+    },
+    "placeholder": {
+      "fr": "Ex: artwork-1",
+      "en": "Ex: artwork-1",
+      "wo": "Ci: artwork-1"
+    },
+    "submit": {
+      "fr": "Voir l'œuvre",
+      "en": "View artwork",
+      "wo": "Xool nataal bi"
+    },
+    "invalid": {
+      "fr": "Code invalide. Vérifiez le code sur le cartel.",
+      "en": "Invalid code. Check the code on the label.",
+      "wo": "Code bu baaxul. Xoolal code bi ci cartel."
+    },
+    "notFound": {
+      "fr": "Cette œuvre n'existe pas",
+      "en": "This artwork doesn't exist",
+      "wo": "Nataal boobu amul"
+    },
+    "enterCode": {
+      "fr": "Veuillez entrer un code",
+      "en": "Please enter a code",
+      "wo": "Dugal ab code"
+    },
+    "examples": {
+      "fr": "Exemples de codes :",
+      "en": "Code examples:",
+      "wo": "Misaal yu code:"
+    }
+  },
+  "artwork": {
+    "view2d": {
+      "fr": "Vue 2D",
+      "en": "2D View",
+      "wo": "Xool 2D"
+    },
+    "view3d": {
+      "fr": "Vue 3D",
+      "en": "3D View",
+      "wo": "Xool 3D"
+    },
+    "viewVr": {
+      "fr": "Vue VR",
+      "en": "VR View",
+      "wo": "Xool VR"
+    },
+    "description": {
+      "fr": "Description",
+      "en": "Description",
+      "wo": "Mel"
+    },
+    "history": {
+      "fr": "Histoire",
+      "en": "History",
+      "wo": "Jaar-jaaru"
+    },
+    "cultural": {
+      "fr": "Contexte culturel",
+      "en": "Cultural context",
+      "wo": "Loolu dund ci aadaa"
+    },
+    "artist": {
+      "fr": "Artiste",
+      "en": "Artist",
+      "wo": "Artist"
+    },
+    "period": {
+      "fr": "Période",
+      "en": "Period",
+      "wo": "Gànnaar"
+    },
+    "views": {
+      "fr": "vues",
+      "en": "views",
+      "wo": "xool"
+    },
+    "view": {
+      "fr": "vue",
+      "en": "view",
+      "wo": "xool"
+    },
+    "share": {
+      "fr": "Partager",
+      "en": "Share",
+      "wo": "Seet"
+    },
+    "linkCopied": {
+      "fr": "Lien copié dans le presse-papier !",
+      "en": "Link copied to clipboard!",
+      "wo": "Lien bi koppi!"
+    },
+    "new": {
+      "fr": "Nouveau",
+      "en": "New",
+      "wo": "Bees"
+    },
+    "featured": {
+      "fr": "œuvres en vedette",
+      "en": "featured artworks",
+      "wo": "nataal yu mag"
+    }
+  },
+  "video": {
+    "title": {
+      "fr": "Vidéo de présentation",
+      "en": "Presentation video",
+      "wo": "Wideyo yu mel"
+    },
+    "show": {
+      "fr": "Voir la vidéo",
+      "en": "Watch video",
+      "wo": "Xool wideyo"
+    },
+    "hide": {
+      "fr": "Réduire",
+      "en": "Collapse",
+      "wo": "Gaañu"
+    },
+    "playing": {
+      "fr": "En lecture",
+      "en": "Playing",
+      "wo": "Dañuy xool"
+    }
+  },
+  "comments": {
+    "title": {
+      "fr": "Commentaires",
+      "en": "Comments",
+      "wo": "Màndarga"
+    },
+    "noComments": {
+      "fr": "Aucun commentaire pour le moment. Soyez le premier à commenter !",
+      "en": "No comments yet. Be the first to comment!",
+      "wo": "Amul màndarga. Yow tax gën a màndarga !"
+    },
+    "yourName": {
+      "fr": "Votre nom",
+      "en": "Your name",
+      "wo": "Sa tur"
+    },
+    "yourComment": {
+      "fr": "Partagez votre avis sur cette œuvre...",
+      "en": "Share your opinion about this artwork...",
+      "wo": "Wax sa xalaat ci nataal boobu..."
+    },
+    "submit": {
+      "fr": "Publier le commentaire",
+      "en": "Post comment",
+      "wo": "Waxal màndarga"
+    },
+    "delete": {
+      "fr": "Supprimer ce commentaire ?",
+      "en": "Delete this comment?",
+      "wo": "Dindi màndarga boobu?"
+    }
+  },
+  "likes": {
+    "like": {
+      "fr": "J'aime",
+      "en": "Like",
+      "wo": "Bëgg"
+    },
+    "liked": {
+      "fr": "Aimé",
+      "en": "Liked",
+      "wo": "Bëgg na"
+    }
+  }
+}
