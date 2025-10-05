@@ -12,7 +12,7 @@
 
 <script setup>
 import { computed, onMounted } from 'vue'
-import { useLikesStore } from '../../stores/likes.js'
+import { useLikesStore } from '../../stores/Likes.js'
 import { useLanguageStore } from '../../stores/language.js'
 import translations from '../../assets/data/translations.json'
 
