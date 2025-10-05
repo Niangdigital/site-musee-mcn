@@ -7,7 +7,7 @@
 
 <script setup>
 import { computed, onMounted } from 'vue'
-import { useLikesStore } from '../../stores/likes'
+import { useLikesStore } from '../../stores/Likes.js'
 
 const props = defineProps({
   artworkId: { type: String, required: true }
