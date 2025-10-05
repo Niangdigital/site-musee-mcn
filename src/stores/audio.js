@@ -4,7 +4,7 @@ import { Howl } from 'howler'
 export const useAudioStore = defineStore('audio', {
   state: () => ({
     isEnabled: true, // ⚠️ CHANGÉ: true → false
-    isUnlocked: true, // ⚠️ CHANGÉ: false → true
+    isUnlocked: false, // ⚠️ CHANGÉ: false → true
     currentSound: null,
     volume: 0.8,
     sounds: {}

@@ -33,11 +33,11 @@
       "en": "In local culture, masks serve as a bridge between the visible and invisible worlds...",
       "wo": "Ci aadaa ñu, masque yo dañuy jëfandikoo ngir yëgal aduna yu gis ak yu gis dara..."
     },
-    "image": "/assets/images/42828.jpg",
-    "audio": {
-      "fr": "/assets/audio/welcome/en.mp3",
-      "en": "/assets/audio/welcome/en.mp3",
-      "wo": "/assets/audio/welcome/en.mp3"
+    "image": "/images/artworks/artwork-1.jpg",
+      "audio": {
+        "fr": "/audio/descriptions/artwork-1-fr.mp3",
+        "en": "/audio/descriptions/artwork-1-en.mp3",
+        "wo": "/audio/descriptions/artwork-1-wo.mp3"
     },
       "video": {
       "fr": "/videos/artwork-1-fr.mp4",
@@ -45,7 +45,7 @@
       "wo": "/videos/artwork-1-wo.mp4"
     },
     "model3d": null
-     
+    
   },
   {
     "id": "artwork-2",

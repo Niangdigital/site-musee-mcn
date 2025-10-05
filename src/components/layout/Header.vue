@@ -19,8 +19,8 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useLanguageStore } from 'src/stores/language.js'
-import translations from '../assets/data/translations.json'
+import { useLanguageStore } from '../../stores/language.js'
+import translations from '../../assets/data/translations.json'
 import LanguageSwitcher from './LanguageSwitcher.vue'
 
 const languageStore = useLanguageStore()

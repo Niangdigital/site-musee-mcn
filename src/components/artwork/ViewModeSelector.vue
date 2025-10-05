@@ -21,7 +21,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useLanguageStore } from '../../stores/language'
-import translations from '../assets/data/translations.json'
+import translations from '../../assets/data/translations.json'
 
 const props = defineProps({
   currentMode: {
