@@ -1,14 +1,15 @@
 {
   "welcome": {
     "title": {
-      "fr": "Bienvenue au MCA",
-      "en": "Welcome to MCA",
-      "wo": "Dalal ak diam ci MCA"
+      "fr": "Bienvenue au Musée virtuel des Civilisations Noires",
+      "en": "Welcome to the virtual Museum of Black Civilizations",
+      "wo": "Dalal ak diam ci Musée Virtuel bu Civilisations Noires"
     },
     "subtitle": {
-      "fr": "Choisissez votre langue pour commencer",
-      "en": "Choose your language to begin",
-      "wo": "Taan sa làkk ngir tàmbalee"
+      "fr": "Bienvenue sur la plateforme virtuelle du Musée des Civilisations Noires. Explorez notre galerie en ligne pour découvrir des œuvres uniques, ou utilisez votre appareil pour scanner les QR codes et accéder à des informations enrichies en temps réel.",
+      "en": "Welcome to the virtual platform of the Museum of Black Civilizations. Explore our online gallery to discover unique artworks, or use your device to scan QR codes and access enriched information in real time.",
+      "wo": "Dalal jamm ci plateforme virtuel bu Musée des Civilisations Noires bi. Seetal sunu galerie ci internet ngir gis nataal yu moroomul, walla jëfandikool sa appareil ngir sànni QR code yi te am xibaar yu gëna leer ci jamono wi."
+
     },
     "tapToEnter": {
       "fr": "Toucher pour entrer",
@@ -16,8 +17,8 @@
       "wo": "Tëgg ngir dugg"
     },
     "audioHint": {
-      "fr": "🎧 Utilisez des écouteurs pour une meilleure expérience",
-      "en": "🎧 Use headphones for better experience",
+      "fr": "🎧 Utilisez des écouteurs pour une expérience immersive",
+      "en": "🎧 Use headphones for an immersive experience",
       "wo": "🎧 Jëfandikoo ay écouteur ngir gën a xam"
     }
   },
@@ -27,12 +28,36 @@
       "en": "Home",
       "wo": "Këru kër"
     },
+    "home1": {
+      "fr": "Une expérience immersive inédite au cœur de vos œuvres",
+      "en": "A unique immersive experience at the heart of your artworks",
+      "wo": "Benn expérience immersive bu bees ci biir sa nataal yi"
+
+    },
+    "gallery2": {
+    "fr": "Découvrez la Galerie Virtuelle du Musée des Civilisations Noires. Plongez dans une expérience interactive et immersive où chaque œuvre prend vie grâce à des présentations en 3D, en réalité virtuelle et en vidéo. Explorez, écoutez et apprenez dans la langue de votre choix français, wolof ou anglais pour vivre un voyage culturel unique au cœur du patrimoine africain.",
+"en": "Discover the Virtual Gallery of the Museum of Black Civilizations. Immerse yourself in an interactive and engaging experience where each artwork comes to life through 3D, virtual reality, and video presentations. Explore, listen, and learn in your preferred language French, Wolof, or English for a unique cultural journey through African heritage.",
+"wo": "Gis Galeri bu Numeerik bu Musée des Civilisations Noires. Dugg ci benn esperyans bu dal ci biir ak bu numeerik, fu benn benn nataal di dund ci sa kanam ak 3D, réalité virtuelle ak vidéo. Seetaan, dégg ak jàng ci làkk bi nga bëgg français, wolof walla anglais ngir dox ci cosaan africain bi ci anam bu wuute."
+    },
     "gallery": {
+      "fr": "Explorer notre galerie",
+"en": "Explore our gallery",
+"wo": "Jàngal sunu galerie"
+
+    },
+
+    "scan": {
+      "fr": "Scanner un QR Code",
+"en": "Scan a QR Code",
+"wo": "Sànnal QR Code bi"
+
+    },
+    "gallery1": {
       "fr": "Galerie",
       "en": "Gallery",
       "wo": "Galeriin"
     },
-    "scan": {
+    "scan1": {
       "fr": "Scanner",
       "en": "Scan",
       "wo": "Scan"
@@ -62,14 +87,15 @@
   },
   "scanner": {
     "title": {
-      "fr": "Scanner un QR Code",
-      "en": "Scan a QR Code",
-      "wo": "Scan QR Code"
+     "fr": "Scannez le QR code de l'œuvre pour découvrir ses détails.",
+      "en": "Scan the artwork's QR code to discover its details.",
+      "wo": "Sànnal QR code bu nataal bi ngir xam lu jëm ci moom."
     },
     "instructions": {
-      "fr": "Pointez votre caméra vers le QR code de l'œuvre",
-      "en": "Point your camera at the artwork's QR code",
-      "wo": "Wóorul sa kamera ci QR code bi ci nataal bi"
+    "fr": "Utilisez votre appareil pour scanner les QR codes situés juste devant l'œuvre et découvrir des informations détaillées en temps réel. Vous pouvez également saisir un code manuellement si nécessaire.",
+    "en": "Use your device to scan the QR codes located right in front of the artwork to discover detailed information in real time. You can also enter a code manually if necessary.",
+    "wo": "Jëfandikool sa appareil ngir sànni QR code yi ci kanam nataal bi te nga gis benn bennal yu gëna tollu ci jamono wi. Mën nga itam bindal code bu la neex."
+
     },
     "tabQR": {
       "fr": "Scanner QR Code",
@@ -211,9 +237,10 @@
       "wo": "Bees"
     },
     "featured": {
-      "fr": "œuvres en vedette",
-      "en": "featured artworks",
-      "wo": "nataal yu mag"
+      "fr": "Découvrez notre dernière exposition",
+"en": "Discover our latest exhibition",
+"wo": "Jàngal sunu exhibition bu bees"
+
     }
   },
   "video": {
@@ -280,6 +307,27 @@
       "fr": "Aimé",
       "en": "Liked",
       "wo": "Bëgg na"
+    }
+  },
+
+  "search1": {
+    "placeholder": {
+      "fr": "Rechercher une œuvre...",
+      "en": "Search for an artwork..."
+    }
+  },
+  "sort": {
+    "default": {
+      "fr": "Par défaut",
+      "en": "Default"
+    },
+    "mostLiked": {
+      "fr": "Plus aimés",
+      "en": "Most liked"
+    },
+    "recent": {
+      "fr": "Plus récents", 
+      "en": "Most recent"
     }
   }
 }

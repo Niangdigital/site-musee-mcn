@@ -4,14 +4,11 @@
     <div v-if="showSplash" class="splash-screen">
       <div class="splash-bg">
         <div class="splash-content">
-          <h1 class="logo-text">MCA</h1>
-          
+          <h1 class="logo-text">{{ splashText }}</h1>
           <button class="enter-button" @click="handleEnter">
-            <span>Toucher pour entrer</span>
+            <span>{{ enterButtonText }}</span>
             <span class="arrow">→</span>
           </button>
-          
-          <p class="audio-hint">🎧 Utilisez des écouteurs pour une meilleure expérience</p>
         </div>
       </div>
     </div>
@@ -19,7 +16,25 @@
     <!-- LANGUAGE SELECTION -->
     <div v-else class="welcome-screen">
       <div class="welcome-content">
-        <div class="wave-animation">
+        <!-- Audio Toggle Button -->
+        <button 
+          class="audio-toggle" 
+          @click="toggleAudio"
+          :class="{ 'audio-muted': !audioEnabled }"
+          aria-label="Toggle audio"
+        >
+          <svg v-if="audioEnabled" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+          <svg v-else width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+        </button>
+        <div class="wave-animation" :class="{ 'wave-active': isAudioPlaying }">
           <div v-for="i in 5" :key="i" class="wave-bar"></div>
         </div>
         
@@ -32,18 +47,21 @@
             :key="lang.code"
             @click="selectLanguage(lang.code)" 
             class="language-button"
+            :class="{ 'language-active': currentLang === lang.code }"
           >
             <span class="language-flag">{{ lang.flag }}</span>
             <span class="language-label">{{ lang.label }}</span>
           </button>
         </div>
+        
+        <p class="audio-hint">🎧 {{ audioHintText }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useLanguageStore } from '../stores/language'
 
@@ -51,6 +69,18 @@ const router = useRouter()
 const languageStore = useLanguageStore()
 const showSplash = ref(true)
 const currentLang = ref('fr')
+const audioEnabled = ref(true)
+const isAudioPlaying = ref(false)
+const audioElement = ref(null)
+const cycleInterval = ref(null)
+const isCycling = ref(false)
+
+// Configuration audio
+const audioConfig = {
+  basePath: '/src/assets/audio/welcome',
+  format: 'mp3',
+  files: { fr: 'fr', en: 'en', wo: 'wo' }
+}
 
 const languages = [
   { code: 'fr', label: 'Français', flag: '🇫🇷' },
@@ -59,42 +89,128 @@ const languages = [
 ]
 
 const translations = {
-  fr: {
-    title: 'Bienvenue au MCA',
-    subtitle: 'Choisissez votre langue pour commencer'
-  },
-  en: {
-    title: 'Welcome to MCA',
-    subtitle: 'Choose your language to begin'
-  },
-  wo: {
-    title: 'Dalal ak diam ci MCA',
-    subtitle: 'Taan sa làkk ngir tàmbalee'
-  }
+  fr: { title: 'Bienvenue au Musée Virtuel des Civilisations Noires', subtitle: 'Choisissez votre langue pour commencer', splashTitle: 'Musée virtuel des Civilisations Noires', enterButton: 'Toucher pour entrer', audioHint: 'Utilisez des écouteurs pour une meilleure expérience' },
+  en: { title: 'Welcome to the virtual Museum of Black Civilizations', subtitle: 'Choose your language to begin', splashTitle: 'Virtual Museum of Black Civilizations', enterButton: 'Touch to enter', audioHint: 'Use headphones for a better experience' },
+  wo: { title: 'Dalal ak diam ci Musée Virtuel bu Njaxu Njabootu Yàllaay', subtitle: 'Taan sa làkk ngir tàmbalee', splashTitle: 'Musée Virtuel bu Njaxu Njabootu Yàllaay', enterButton: 'Topp ngir dugg', audioHint: 'Jëfandikoo écouteur ngir am xew bu gën a baax' }
 }
 
 const currentText = computed(() => translations[currentLang.value])
+const splashText = computed(() => translations[currentLang.value].splashTitle)
+const enterButtonText = computed(() => translations[currentLang.value].enterButton)
+const audioHintText = computed(() => translations[currentLang.value].audioHint)
 
-const handleEnter = () => {
-  console.log('Bouton cliqué - Passage au sélecteur de langue')
-  showSplash.value = false
+// Génère le chemin audio
+const getAudioPath = (langCode) => `${audioConfig.basePath}/${audioConfig.files[langCode]}.${audioConfig.format}`
+
+// Joue l'audio
+const playAudio = async (langCode) => {
+  if (!audioEnabled.value) return
+  try {
+    if (audioElement.value) {
+      audioElement.value.pause()
+      audioElement.value.currentTime = 0
+      audioElement.value.removeEventListener('play', handlePlay)
+      audioElement.value.removeEventListener('ended', handleEnded)
+      audioElement.value.removeEventListener('error', handleError)
+    }
+    audioElement.value = new Audio(getAudioPath(langCode))
+    audioElement.value.muted = !audioEnabled.value
+    audioElement.value.addEventListener('play', handlePlay)
+    audioElement.value.addEventListener('ended', handleEnded)
+    audioElement.value.addEventListener('error', handleError)
+    if (audioEnabled.value) await audioElement.value.play()
+  } catch (error) {
+    console.warn('Erreur lecture audio:', error)
+    isAudioPlaying.value = false
+  }
 }
 
+const handlePlay = () => { isAudioPlaying.value = true }
+const handleEnded = () => {
+  isAudioPlaying.value = false
+  if (isCycling.value && !showSplash.value) cycleToNextLanguage()
+}
+const handleError = () => {
+  console.warn(`Audio non trouvé pour ${currentLang.value}`)
+  isAudioPlaying.value = false
+  if (isCycling.value && !showSplash.value) setTimeout(cycleToNextLanguage, 1000)
+}
+
+// Arrête l'audio
+const stopAudio = () => {
+  if (audioElement.value) {
+    audioElement.value.pause()
+    audioElement.value.currentTime = 0
+    audioElement.value.removeEventListener('play', handlePlay)
+    audioElement.value.removeEventListener('ended', handleEnded)
+    audioElement.value.removeEventListener('error', handleError)
+    isAudioPlaying.value = false
+  }
+}
+
+// Toggle audio on/off avec sauvegarde localStorage
+const toggleAudio = () => {
+  audioEnabled.value = !audioEnabled.value
+  localStorage.setItem('audioEnabled', audioEnabled.value)
+  
+  if (audioElement.value) {
+    audioElement.value.muted = !audioEnabled.value
+    if (audioEnabled.value && !isAudioPlaying.value) {
+      audioElement.value.play().catch(() => { isAudioPlaying.value = false })
+    } else {
+      audioElement.value.pause()
+      isAudioPlaying.value = false
+    }
+  }
+}
+
+// Cycle des langues
+const cycleToNextLanguage = () => {
+  const langs = ['fr','en','wo']
+  const currentIndex = langs.indexOf(currentLang.value)
+  currentLang.value = langs[(currentIndex + 1) % langs.length]
+}
+
+// Watch pour jouer l'audio quand la langue change
+watch(currentLang, (newLang) => {
+  if (!showSplash.value && audioEnabled.value && isCycling.value) playAudio(newLang)
+})
+
+// Gestion du clic "Entrer"
+const handleEnter = () => {
+  if (cycleInterval.value) { clearInterval(cycleInterval.value); cycleInterval.value=null }
+  showSplash.value = false
+  isCycling.value = true
+  setTimeout(() => playAudio(currentLang.value), 300)
+}
+
+// Sélection de langue
 const selectLanguage = (lang) => {
-  console.log('Langue sélectionnée:', lang)
+  isCycling.value = false
+  stopAudio()
   languageStore.setLanguage(lang)
   router.push({ name: 'Home' })
 }
 
+// Montage
 onMounted(() => {
-  // Cycle des langues toutes les 3 secondes
-  setInterval(() => {
-    const langs = ['fr', 'en', 'wo']
-    const currentIndex = langs.indexOf(currentLang.value)
-    currentLang.value = langs[(currentIndex + 1) % langs.length]
-  }, 3000)
+  cycleInterval.value = setInterval(() => {
+    if (showSplash.value) cycleToNextLanguage()
+  }, 4000)
+
+  // Récupérer état audio depuis localStorage
+  const savedState = localStorage.getItem('audioEnabled')
+  if (savedState !== null) audioEnabled.value = savedState === 'true'
 })
+
+onUnmounted(() => { stopAudio(); isCycling.value=false; if(cycleInterval.value) clearInterval(cycleInterval.value) })
 </script>
+
+<style scoped>
+/* ton style existant reste inchangé */
+</style>
+
+
 
 <style scoped>
 .welcome-container {
@@ -112,6 +228,11 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   background: linear-gradient(135deg, #2c5530 0%, #1e3a23 100%);
+  background-image: 
+    linear-gradient(135deg, rgba(44, 85, 48, 0.95) 0%, rgba(30, 58, 35, 0.95) 100%),
+    url('src/assets/images/museum-bg.jpg');
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -168,6 +289,51 @@ onMounted(() => {
   margin-top: 2rem;
   font-size: 0.875rem;
   opacity: 0.9;
+  color: beige;
+}
+
+/* ========== AUDIO TOGGLE BUTTON ========== */
+.audio-toggle {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10;
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  min-height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  color: #d4af37;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 0;
+}
+
+.audio-toggle:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #d4af37;
+  transform: scale(1.05);
+}
+
+.audio-toggle.audio-muted {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(212, 175, 55, 0.5);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.audio-toggle svg {
+  transition: transform 0.3s ease;
+}
+
+.audio-toggle:active svg {
+  transform: scale(0.9);
 }
 
 /* ========== WELCOME SCREEN ========== */
@@ -177,7 +343,13 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #2c5530 0%, #1e3a23 100%);
+  background-image: 
+    linear-gradient(135deg, rgba(44, 85, 48, 0.90) 0%, rgba(30, 58, 35, 0.90) 100%),
+    url('src/assets/images/language-selection-bg.jpg');
+  background-size: cover;
+  background-position: center;
   padding: 2rem;
+  position: relative;
 }
 
 .welcome-content {
@@ -201,25 +373,32 @@ onMounted(() => {
   height: 20px;
   background: #d4af37;
   border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.wave-animation.wave-active .wave-bar {
   animation: wave 0.8s ease-in-out infinite;
 }
 
-.wave-bar:nth-child(2) { animation-delay: 0.1s; }
-.wave-bar:nth-child(3) { animation-delay: 0.2s; }
-.wave-bar:nth-child(4) { animation-delay: 0.3s; }
-.wave-bar:nth-child(5) { animation-delay: 0.4s; }
+.wave-animation.wave-active .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+.wave-animation.wave-active .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+.wave-animation.wave-active .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+.wave-animation.wave-active .wave-bar:nth-child(5) { animation-delay: 0.4s; }
 
 .welcome-title {
   font-size: 2.5rem;
   color: #d4af37;
   margin-bottom: 1rem;
   font-weight: 700;
+  transition: opacity 0.3s ease;
 }
 
 .welcome-subtitle {
   font-size: 1.25rem;
   margin-bottom: 3rem;
   opacity: 0.95;
+  transition: opacity 0.3s ease;
+  color: beige;
 }
 
 .language-selector {
@@ -227,6 +406,7 @@ onMounted(() => {
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 2rem;
 }
 
 .language-button {
@@ -250,6 +430,12 @@ onMounted(() => {
   border-color: #d4af37;
   transform: translateY(-4px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.language-button.language-active {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: #d4af37;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
 }
 
 .language-flag {
@@ -296,6 +482,20 @@ onMounted(() => {
 
 /* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
+  .audio-toggle {
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    min-height: 56px;
+  }
+  
+  .audio-toggle svg {
+    width: 24px;
+    height: 24px;
+  }
+
   .logo-text {
     font-size: 3rem;
   }

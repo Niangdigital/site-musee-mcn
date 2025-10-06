@@ -8,8 +8,8 @@
       
       <nav class="nav">
         <router-link to="/home" class="nav-link">{{ t('navigation.home') }}</router-link>
-        <router-link to="/gallery" class="nav-link">{{ t('navigation.gallery') }}</router-link>
-        <router-link to="/scan" class="nav-link">{{ t('navigation.scan') }}</router-link>
+        <router-link to="/gallery" class="nav-link">{{ t('navigation.gallery1') }}</router-link>
+        <router-link to="/scan" class="nav-link">{{ t('navigation.scan1') }}</router-link>
       </nav>
       
       <LanguageSwitcher />
@@ -24,7 +24,7 @@ import translations from '../../assets/data/translations.json'
 import LanguageSwitcher from './LanguageSwitcher.vue'
 
 const languageStore = useLanguageStore()
-const logoSrc = ref('/images/logo-mca.png')
+const logoSrc = ref('/src/assets/images/logo-mca.png')
 
 const t = (key) => {
   const keys = key.split('.')

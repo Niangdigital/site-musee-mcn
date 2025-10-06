@@ -1,7 +1,8 @@
 <template>
   <router-link :to="`/artwork/${artwork.id}`" class="artwork-card">
     <div class="artwork-image">
-      <img :src="artwork.image" :alt="title" />
+      <img :src="artwork.image" :alt="title"> {{ image }}</img> />
+
       <span v-if="artwork.isNew" class="new-badge">{{ t('artwork.new') }} ✨</span>
     </div>
     <div class="artwork-info">

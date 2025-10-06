@@ -5,7 +5,7 @@
     <main class="home-main">
       <section class="hero-section">
         <div class="container">
-          <h1>{{ t('navigation.home') }}</h1>
+          <h1>{{ t('navigation.home1') }}</h1>
           <p class="hero-text">{{ t('welcome.subtitle') }}</p>
           
           <div class="action-buttons">
@@ -31,7 +31,7 @@
       </section>
       
       <section class="featured-section container">
-        <h2>{{ artworks.length }} {{ t('artwork.featured') }}</h2>
+        <h2> {{ t('artwork.featured') }}</h2>
         <div class="grid grid-3">
           <ArtworkCard
             v-for="artwork in artworks.slice(0, 3)"
@@ -81,11 +81,16 @@ const t = (key) => {
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   color: var(--color-white);
 }
+.hero-section h1 {
+  color: var(--color-white); /* texte en blanc */
+}
 
 .hero-text {
   font-size: 1.25rem;
   margin-bottom: var(--space-8);
   opacity: 0.95;
+  color: var(--color-white);
+
 }
 
 .action-buttons {
@@ -141,6 +146,7 @@ const t = (key) => {
 .featured-section h2 {
   text-align: center;
   margin-bottom: var(--space-8);
+  text-align: left;
 }
 
 @media (max-width: 768px) {

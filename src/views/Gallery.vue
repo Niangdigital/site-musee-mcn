@@ -5,15 +5,18 @@
     <main class="gallery-main container">
       <div class="gallery-header">
         <h1>{{ t('navigation.gallery') }}</h1>
+        <p>{{ t('navigation.gallery2') }}</p>
         <GalleryFilter 
           :search="searchQuery"
+          :sort="sortBy"
           @update:search="searchQuery = $event"
+          @update:sort="sortBy = $event"
         />
       </div>
       
       <GalleryGrid 
-        v-if="filteredArtworks.length > 0" 
-        :artworks="filteredArtworks" 
+        v-if="sortedArtworks.length > 0" 
+        :artworks="sortedArtworks" 
       /> 
       
       <div v-else class="no-results">
@@ -31,9 +34,10 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useArtworksStore } from '../stores/artworks'
 import { useLanguageStore } from '../stores/language'
+import { useLikesStore } from '../stores/likes'
 import translations from '../assets/data/translations.json'
 import Header from '../components/layout/Header.vue'
 import Footer from '../components/layout/Footer.vue'
@@ -42,11 +46,39 @@ import GalleryFilter from '../components/gallery/GalleryFilter.vue'
 
 const artworksStore = useArtworksStore()
 const languageStore = useLanguageStore()
+const likesStore = useLikesStore()
+
 const searchQuery = ref('')
+const sortBy = ref('default')
+
+// Charger les likes au montage du composant
+onMounted(() => {
+  likesStore.loadLikes()
+})
 
 const filteredArtworks = computed(() => {
   if (!searchQuery.value) return artworksStore.allArtworks
   return artworksStore.searchArtworks(searchQuery.value, languageStore.current)
+})
+
+const sortedArtworks = computed(() => {
+  let result = [...filteredArtworks.value]
+  
+  if (sortBy.value === 'mostLiked') {
+    result.sort((a, b) => {
+      const aLikes = likesStore.getLikesCount(a.id)
+      const bLikes = likesStore.getLikesCount(b.id)
+      return bLikes - aLikes
+    })
+  } else if (sortBy.value === 'recent') {
+    // Si vous avez une propriété date dans vos artworks
+    result.sort((a, b) => {
+      // Adapter selon votre structure de données
+      return new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
+    })
+  }
+  
+  return result
 })
 
 const t = (key) => {
@@ -55,32 +87,6 @@ const t = (key) => {
   for (const k of keys) value = value[k]
   return value[languageStore.current] || value['fr']
 }
-
-// NOTE: Cette computed property est définie mais non utilisée dans le template
-// Si vous avez besoin de trier par likes, remplacez :artworks="filteredArtworks" 
-// par :artworks="sortedArtworks" et décommentez les imports ci-dessous
-/*
-import { useLikesStore } from '../stores/likes'
-const likesStore = useLikesStore()
-const sortBy = ref('default') // ou 'mostLiked'
-*/
-
-const sortedArtworks = computed(() => {
-  let result = [...filteredArtworks.value]
-  
-  // Cette partie nécessite likesStore et sortBy pour fonctionner
-  /* 
-  if (sortBy.value === 'mostLiked') {
-    result.sort((a, b) => {
-      const aLikes = likesStore.getLikesCount(a.id)
-      const bLikes = likesStore.getLikesCount(b.id)
-      return bLikes - aLikes
-    })
-  }
-  */
-  
-  return result
-})
 </script>
 
 <style scoped>
@@ -95,6 +101,14 @@ const sortedArtworks = computed(() => {
 
 .gallery-header h1 {
   margin-bottom: var(--space-6);
+}
+
+
+.gallery-header p {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-8);
+    opacity: 0.95;
+    color: var(--color-primary-dark);
 }
 
 .no-results {

@@ -29,7 +29,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useAudioStore } from '../../stores/audio'
 import translations from '../assets/data/translations.json'
-import AudioController from './AudioController.vue'
+import AudioController from '../components/layout/ AudioControl.vue'
 import VoiceAnimation from './VoiceAnimation.vue'
 import LanguageSelector from './LanguageSelector.vue'
 
@@ -51,7 +51,7 @@ const playAudio = async (lang) => {
   if (!audioStore.isEnabled || !audioStore.isUnlocked) return
   
   isSpeaking.value = true
-  const audioPath = `/audio/welcome/${lang}.mp3`
+  const audioPath = `/src/assets/audio/welcome/${lang}.mp3` // Chemin vers le fichier audio
   
   try {
     await audioStore.play(audioPath, `welcome-${lang}`)

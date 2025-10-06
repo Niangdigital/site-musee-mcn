@@ -44,7 +44,6 @@
               <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
             </svg>
             
-            <!-- Nouvel indicateur -->
             <span v-if="isPlaying" class="audio-wave">
               <span class="wave-bar"></span>
               <span class="wave-bar"></span>
@@ -52,7 +51,7 @@
             </span>
           </button>
 
-          <p v-if="isPlaying" class="audio-status">🔊 Lecture en cours...</p>
+          <p v-if="isPlaying" class="audio-status">Lecture en cours...</p>
         </div>
       </div>
 
@@ -65,7 +64,7 @@
       
       <VideoPlayer 
         v-if="artwork.video && artwork.video[lang]"
-        :video-url="artwork.video[lang]"
+        :artwork-id="artwork.id"
         :title="title"
       />
       
@@ -104,8 +103,13 @@
   </div>
 </template>
 
+
+
+
+
+
 <script setup>
-import { ref, computed, watch, onUnmounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useLanguageStore } from '../../stores/language.js'
 import { useAudioStore } from '../../stores/audio.js'
 import { useArtworksStore } from '../../stores/artworks.js'
@@ -130,6 +134,15 @@ const audioStore = useAudioStore()
 const artworksStore = useArtworksStore()
 const activeTab = ref('description')
 const isPlaying = ref(false)
+const audioElement = ref(null)
+const lastTime = ref(0)  // pour reprendre là où l'audio s'est arrêté
+
+// On récupère l'état du son depuis le localStorage
+const audioEnabled = ref(true)
+const savedAudioState = localStorage.getItem('audioEnabled')
+if (savedAudioState !== null) {
+  audioEnabled.value = savedAudioState === 'true'
+}
 
 const lang = computed(() => languageStore.current)
 const title = computed(() => props.artwork.title[lang.value])
@@ -138,6 +151,18 @@ const period = computed(() => props.artwork.period[lang.value])
 const description = computed(() => props.artwork.description[lang.value])
 const history = computed(() => props.artwork.history[lang.value])
 const cultural = computed(() => props.artwork.cultural[lang.value])
+
+const audioUrl = computed(() => {
+  try {
+    return new URL(
+      `/src/assets/audio/descriptions/${props.artwork.id}-${lang.value}.mp3`, 
+      import.meta.url
+    ).href
+  } catch (e) {
+    console.error('Audio not found:', props.artwork.id)
+    return props.artwork.audio?.[lang.value] || ''
+  }
+})
 
 const t = (key) => {
   const keys = key.split('.')
@@ -148,23 +173,72 @@ const t = (key) => {
   return value[lang.value] || value['fr']
 }
 
-const toggleAudio = async () => {
-  if (!audioStore.isEnabled) return
-  
-  if (isPlaying.value) {
-    audioStore.stop()
-    isPlaying.value = false
-  } else {
-    const audioPath = props.artwork.audio[lang.value]
-    await audioStore.play(audioPath, `artwork-${props.artwork.id}`)
-    isPlaying.value = true
-    
-    setTimeout(() => {
+// Initialiser audio et vérifier si le son du navigateur est activé
+onMounted(async () => {
+  audioElement.value = new Audio(audioUrl.value)
+  audioElement.value.currentTime = lastTime.value
+  audioElement.value.muted = !audioEnabled.value  // Appliquer l'état du son
+
+  if (audioEnabled.value) {
+    try {
+      await audioElement.value.play()
+      isPlaying.value = true
+    } catch (err) {
+      console.warn('Lecture audio automatique bloquée, attente interaction utilisateur.')
       isPlaying.value = false
-    }, 30000)
+      lastTime.value = 0
+    }
+  }
+
+  audioElement.value.addEventListener('ended', () => {
+    isPlaying.value = false
+    lastTime.value = 0
+  })
+})
+
+// Toggle lecture audio
+const toggleAudio = async () => {
+  if (!audioElement.value) return
+
+  audioEnabled.value = !audioEnabled.value
+  localStorage.setItem('audioEnabled', audioEnabled.value)
+  audioElement.value.muted = !audioEnabled.value
+
+  try {
+    if (!audioElement.value.paused) {
+      audioElement.value.pause()
+      lastTime.value = audioElement.value.currentTime
+      isPlaying.value = false
+    } else if (audioEnabled.value) {
+      await audioElement.value.play()
+      isPlaying.value = true
+    }
+  } catch (err) {
+    console.warn('Lecture audio bloquée ou impossible', err)
   }
 }
 
+// Arrêter audio lors du changement d'œuvre
+watch(() => props.artwork.id, async () => {
+  activeTab.value = 'description'
+  
+  if (audioElement.value) {
+    audioElement.value.pause()
+    audioElement.value.currentTime = 0
+    isPlaying.value = false
+  }
+  
+  audioElement.value = new Audio(audioUrl.value)
+  audioElement.value.currentTime = 0
+  audioElement.value.muted = !audioEnabled.value
+
+  audioElement.value.addEventListener('ended', () => {
+    isPlaying.value = false
+    lastTime.value = 0
+  })
+})
+
+// Partage
 const shareArtwork = async () => {
   const shareData = {
     title: title.value,
@@ -184,20 +258,34 @@ const shareArtwork = async () => {
   }
 }
 
-watch(() => props.artwork.id, () => {
-  activeTab.value = 'description'
-  if (isPlaying.value) {
-    audioStore.stop()
-    isPlaying.value = false
-  }
-})
-
+// Cleanup au démontage
 onUnmounted(() => {
-  if (isPlaying.value) {
-    audioStore.stop()
+  if (audioElement.value) {
+    audioElement.value.pause()
+    audioElement.value = null
   }
 })
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <style scoped>
 /* Layout principal */

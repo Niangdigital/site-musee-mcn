@@ -14,22 +14,13 @@
         </div>
       </div>
     </div>
-
-    <div class="scanner-controls">
-      <button v-if="!isScanning" @click="startScanning" class="btn-start">
-        {{ t('scanner.start') }}
-      </button>
-      <button v-else @click="stopScanning" class="btn-stop">
-        {{ t('scanner.stop') }}
-      </button>
-    </div>
     
     <p v-if="error" class="scanner-error">{{ error }}</p>
   </div>
 </template>
 
 <script setup>
-import { ref, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useLanguageStore } from '../../stores/language'
 import translations from '../../assets/data/translations.json'
 import qrScanner from '../../utils/qrScanner.js'
@@ -67,6 +58,7 @@ const startScanning = async () => {
     isScanning.value = true
   } catch (err) {
     error.value = t('scanner.error')
+    isScanning.value = false
   }
 }
 
@@ -74,6 +66,10 @@ const stopScanning = () => {
   qrScanner.stopScan()
   isScanning.value = false
 }
+
+onMounted(() => {
+  startScanning()
+})
 
 onUnmounted(() => {
   stopScanning()

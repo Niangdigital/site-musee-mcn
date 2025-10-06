@@ -31,9 +31,9 @@ const props = defineProps({
 })
 const getTooltip = (mode) => {
   const tooltips = {
-    '2d': 'Image haute qualité - Chargement rapide ⚡',
-    '3d': 'Vue avec profondeur et cadre - Effet musée 🎨',
-    'vr': 'Réalité virtuelle - Casque requis 🥽'
+    '2d': 'Image haute qualité - Chargement rapide ',
+    '3d': 'Vue en 3 dimensions - détails interactifs ',
+    'vr': 'Immersion en réalité virtuelle - Casque VR recommandé '
   }
   return tooltips[mode]
 }

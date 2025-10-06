@@ -28,8 +28,8 @@ import translations from '../assets/data/translations.json'
 
 const emit = defineEmits(['enter'])
 
-const bgImage = ref('/images/museum-bg.jpg')
-const logo = ref('/images/logo-mca.png')
+const bgImage = ref('/src/assets/images/museum-bg.jpg')
+const logo = ref('/src/assets/images/logo-mca.png')
 const currentLang = ref('fr')
 
 const t = computed(() => ({
@@ -63,7 +63,7 @@ onMounted(() => {
 .splash-bg {
   position: absolute;
   inset: 0;
-  background-size: cover;
+  
   background-position: center;
   animation: zoomIn 20s ease-in-out infinite alternate;
 }

@@ -1,185 +1,239 @@
 <template>
-  <div class="artwork-viewer-vr">
-    <div ref="containerRef" class="vr-container">
-      <div class="vr-preview">
-        <img :src="artwork.image" :alt="title" class="vr-preview-img" />
-        <div class="vr-overlay">
-          <div class="vr-icon">🥽</div>
-          <p class="vr-text">Mode VR</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="vr-controls">
-      <button 
-        v-if="vrSupported" 
-        @click="enterVR" 
-        class="vr-button"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <rect x="2" y="7" width="20" height="10" rx="2" stroke-width="2"/>
-          <circle cx="8" cy="12" r="2" stroke-width="2"/>
-          <circle cx="16" cy="12" r="2" stroke-width="2"/>
-        </svg>
-        Lancer la VR
+  <div class="artwork-viewer-3d" ref="artworkContainer" :style="{ aspectRatio: imageAspectRatio }">
+    <div ref="containerRef" class="viewer-container"></div>
+
+    <!-- Contrôles -->
+    <div class="viewer-controls">
+      <p class="control-hint">
+        🖱️ Effet 3D immersif En réalité Virtuelle.
+      </p>
+
+      <button v-if="!isFullscreen" @click="toggleFullscreen" class="control-btn">
+        Plein écran
       </button>
-      <p v-else class="vr-warning">
-        ⚠️ WebXR non supporté sur cet appareil
-      </p>
-      <p class="vr-hint">
-        📱 Utilisez un casque VR ou Google Cardboard
-      </p>
     </div>
+
+    <button v-if="isFullscreen" @click="exitFullscreenAndVR" class="exit-fullscreen">
+      ✖
+    </button>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
-import { useLanguageStore } from '../../stores/language'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import * as THREE from 'three'
+import { gsap } from 'gsap'
 
 const props = defineProps({
-  artwork: {
-    type: Object,
-    required: true
-  }
+  artwork: { type: Object, required: true }
 })
 
-const languageStore = useLanguageStore()
+const artworkContainer = ref(null)
 const containerRef = ref(null)
-const vrSupported = ref(false)
+let scene, camera, renderer, imageMesh, animationFrameId
 
-const title = computed(() => props.artwork.title[languageStore.current])
+const zoom = ref(1.25)
+const speed = ref(0.0000)
+const imageAspectRatio = ref('4/3')
+const vrMode = ref(true)
+const isFullscreen = ref(false)
 
-onMounted(() => {
-  if ('xr' in navigator) {
-    navigator.xr.isSessionSupported('immersive-vr').then((supported) => {
-      vrSupported.value = supported
-    })
+const imageUrl = computed(() => {
+  try {
+    return new URL(`/src/assets/images/artworks/${props.artwork.id}.jpg`, import.meta.url).href
+  } catch (e) {
+    console.error('Image not found for 3D:', props.artwork.id)
+    return ''
   }
 })
 
-const enterVR = async () => {
-  if (!containerRef.value || !vrSupported.value) return
-  
-  try {
-    const scene = new THREE.Scene()
-    scene.background = new THREE.Color(0x000000)
-    
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-    camera.position.z = 3
-    
-    const renderer = new THREE.WebGLRenderer({ antialias: true })
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.xr.enabled = true
-    containerRef.value.appendChild(renderer.domElement)
-    
-    const loader = new THREE.TextureLoader()
-    const texture = await loader.loadAsync(props.artwork.image)
-    
-    const geometry = new THREE.PlaneGeometry(4, 3)
-    const material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide })
-    const mesh = new THREE.Mesh(geometry, material)
-    scene.add(mesh)
-    
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
-    scene.add(ambientLight)
-    
-    const session = await navigator.xr.requestSession('immersive-vr')
-    await renderer.xr.setSession(session)
-    
-    renderer.setAnimationLoop(() => {
+let initialContainerWidth = 0
+let initialContainerHeight = 0
+
+const init3DScene = (imgWidth, imgHeight) => {
+  const container = containerRef.value
+  if (!container) return
+
+  const aspect = imgWidth / imgHeight
+  imageAspectRatio.value = `${imgWidth}/${imgHeight}`
+
+  initialContainerWidth = container.clientWidth
+  initialContainerHeight = container.clientHeight
+
+  if (renderer) {
+    renderer.dispose()
+    container.innerHTML = ''
+  }
+
+  scene = new THREE.Scene()
+  camera = new THREE.PerspectiveCamera(35, aspect, 0.1, 100)
+  camera.position.z = 5
+
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+  renderer.setPixelRatio(window.devicePixelRatio)
+  container.appendChild(renderer.domElement)
+
+  const updateCanvasSize = () => {
+    const width = container.clientWidth
+    let height = width / aspect
+    if (vrMode.value && window.innerWidth < 768) {
+      renderer.setSize(width / 2, height)
+    } else {
+      renderer.setSize(width, height)
+    }
+    camera.aspect = width / height
+    camera.updateProjectionMatrix()
+  }
+  updateCanvasSize()
+  window.addEventListener('resize', updateCanvasSize)
+
+  // Image exacte avec MeshBasicMaterial
+  const texture = new THREE.TextureLoader().load(imageUrl.value)
+  const geometry = new THREE.PlaneGeometry(3 * aspect, 3)
+  const material = new THREE.MeshBasicMaterial({ map: texture, toneMapped: false })
+  imageMesh = new THREE.Mesh(geometry, material)
+  scene.add(imageMesh)
+  imageMesh.scale.set(zoom.value, zoom.value, 1)
+
+  // Rotation avec souris
+  let mouseX = 0, mouseY = 0
+  const onMouseMove = (e) => {
+    const rect = container.getBoundingClientRect()
+    mouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 2
+    mouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 2
+  }
+  container.addEventListener('mousemove', onMouseMove)
+
+  const animate = () => {
+    animationFrameId = requestAnimationFrame(animate)
+    const time = performance.now() * speed.value
+    imageMesh.rotation.y = Math.sin(time) * 0.15 + mouseX * 0.2
+    imageMesh.rotation.x = Math.cos(time * 1.2) * 0.1 + mouseY * 0.15
+
+    if (vrMode.value && window.innerWidth < 768) {
+      renderer.setScissorTest(true)
+      renderer.setScissor(0, 0, renderer.domElement.width / 2, renderer.domElement.height)
+      renderer.setViewport(0, 0, renderer.domElement.width / 2, renderer.domElement.height)
       renderer.render(scene, camera)
-    })
-    
-  } catch (error) {
-    console.error('VR Error:', error)
-    alert('Impossible de lancer le mode VR')
+      renderer.setScissor(renderer.domElement.width / 2, 0, renderer.domElement.width / 2, renderer.domElement.height)
+      renderer.setViewport(renderer.domElement.width / 2, 0, renderer.domElement.width / 2, renderer.domElement.height)
+      renderer.render(scene, camera)
+      renderer.setScissorTest(false)
+    } else {
+      renderer.render(scene, camera)
+    }
+  }
+  animate()
+}
+
+const toggleVRMode = () => { vrMode.value = !vrMode.value }
+
+const toggleFullscreen = async () => {
+  const container = artworkContainer.value
+  if (!container) return
+  if (!document.fullscreenElement) {
+    await container.requestFullscreen()
+    isFullscreen.value = true
+  } else {
+    await document.exitFullscreen()
+    isFullscreen.value = false
+    resetAfterFullscreen()
   }
 }
+
+const exitFullscreenAndVR = async () => {
+  vrMode.value = false
+  if (document.fullscreenElement) {
+    await document.exitFullscreen()
+    isFullscreen.value = false
+  }
+  resetAfterFullscreen()
+}
+
+const resetAfterFullscreen = () => {
+  if (!containerRef.value || !renderer) return
+  const container = containerRef.value
+  container.style.width = initialContainerWidth + 'px'
+  container.style.height = initialContainerHeight + 'px'
+  renderer.setSize(initialContainerWidth, initialContainerHeight)
+  camera.aspect = initialContainerWidth / initialContainerHeight
+  camera.updateProjectionMatrix()
+}
+
+onMounted(() => {
+  const img = new Image()
+  img.onload = () => init3DScene(img.width, img.height)
+  img.src = imageUrl.value
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', () => {})
+  if (renderer) renderer.dispose()
+  cancelAnimationFrame(animationFrameId)
+})
 </script>
 
 <style scoped>
-.artwork-viewer-vr {
-  background: var(--color-gray-900);
+.artwork-viewer-3d {
+  position: relative;
+  background: var(--color-beige);
   border-radius: var(--border-radius-lg);
   overflow: hidden;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
-.vr-container {
-  aspect-ratio: 4/3;
-  position: relative;
-}
-
-.vr-preview {
+.viewer-container {
   width: 100%;
   height: 100%;
-  position: relative;
 }
 
-.vr-preview-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: blur(2px) brightness(0.7);
-}
-
-.vr-overlay {
+.viewer-controls {
   position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-4);
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
   color: var(--color-white);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--border-radius);
+  backdrop-filter: blur(10px);
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
-.vr-icon {
-  font-size: 4rem;
-  animation: float 2s ease-in-out infinite;
-}
-
-.vr-text {
-  font-size: 1.5rem;
-  font-weight: 700;
+.control-hint {
   margin: 0;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-}
-
-.vr-controls {
-  padding: var(--space-6);
-  text-align: center;
-}
-
-.vr-button {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-4) var(--space-8);
-  font-size: 1.125rem;
-  background: var(--color-primary);
-  margin-bottom: var(--space-4);
-}
-
-.vr-button svg {
-  width: 24px;
-  height: 24px;
-}
-
-.vr-warning {
-  color: var(--color-accent);
-  margin-bottom: var(--space-4);
-}
-
-.vr-hint {
-  color: var(--color-gray-700);
   font-size: 0.875rem;
-  margin: 0;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+.control-btn {
+  padding: 0.3rem 0.6rem;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.control-btn:hover {
+  background: var(--color-primary-dark);
+}
+
+.exit-fullscreen {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 1rem;
 }
 </style> 

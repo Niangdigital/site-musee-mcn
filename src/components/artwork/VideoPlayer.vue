@@ -1,11 +1,8 @@
 <template>
   <div class="video-player-container">
     <div class="video-header">
-      <h3>🎥 {{ t('video.title') }}</h3>
-      <button 
-        @click="isExpanded = !isExpanded" 
-        class="toggle-btn"
-      >
+      <h3> {{ t('video.title') }}</h3>
+      <button @click="isExpanded = !isExpanded" class="toggle-btn">
         {{ isExpanded ? '▼ ' + t('video.hide') : '▶ ' + t('video.show') }}
       </button>
     </div>
@@ -13,11 +10,12 @@
     <div v-if="isExpanded" class="video-wrapper">
       <video 
         ref="videoEl"
-        :src="videoUrl"
+        :src="computedVideoUrl"
         controls
         class="video-element"
         @play="handlePlay"
         @pause="handlePause"
+        @error="handleError"
       >
         Votre navigateur ne supporte pas les vidéos HTML5.
       </video>
@@ -26,17 +24,21 @@
         <span class="pulse-dot"></span>
         {{ t('video.playing') }}
       </div>
+      
+      <div v-if="error" class="error-msg">
+        Erreur de chargement vidéo
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useLanguageStore } from '../../stores/language'
 import translations from '../../assets/data/translations.json'
 
-defineProps({
-  videoUrl: {
+const props = defineProps({
+  artworkId: {
     type: String,
     required: true
   },
@@ -51,6 +53,11 @@ const videoEl = ref(null)
 const isExpanded = ref(false)
 const isPlaying = ref(false)
 
+const computedVideoUrl = computed(() => {
+  const lang = languageStore.current
+  return new URL(`../../assets/public/videos/${props.artworkId}-${lang}.mp4`, import.meta.url).href
+})
+
 const t = (key) => {
   const keys = key.split('.')
   let value = translations
@@ -58,13 +65,8 @@ const t = (key) => {
   return value[languageStore.current] || value['fr']
 }
 
-const handlePlay = () => {
-  isPlaying.value = true
-}
-
-const handlePause = () => {
-  isPlaying.value = false
-}
+const handlePlay = () => { isPlaying.value = true }
+const handlePause = () => { isPlaying.value = false }
 </script>
 
 <style scoped>
@@ -75,7 +77,11 @@ const handlePause = () => {
   overflow: hidden;
   border: 2px solid #e5e7eb;
 }
-
+.error-msg {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.75rem;
+}
 .video-header {
   display: flex;
   align-items: center;
