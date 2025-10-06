@@ -37,7 +37,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useArtworksStore } from '../stores/artworks'
 import { useLanguageStore } from '../stores/language'
-import { useLikesStore } from '../stores/likes'
+import { useLikesStore } from '../stores/Likes.js'
 import translations from '../assets/data/translations.json'
 import Header from '../components/layout/Header.vue'
 import Footer from '../components/layout/Footer.vue'
