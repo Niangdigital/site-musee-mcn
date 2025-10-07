@@ -13,12 +13,6 @@
         class="search-input"
       />
     </div>
-    <select v-model="sortBy" @change="$emit('update:sort', sortBy)" class="sort-select">
-  <option value="default">Par défaut</option>
-  <option value="mostLiked">Plus aimés</option>
-  <option value="recent">Plus récents</option>
-</select>
-
   </div>
 </template>
 

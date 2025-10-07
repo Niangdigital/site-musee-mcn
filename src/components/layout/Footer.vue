@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="container footer-content">
-      <p class="footer-text">© 2025 MCA Museum - Tous droits réservés</p>
+      <p class="footer-text">© 2025 Musée des civilisations noires - Tous droits réservés</p>
     </div>
   </footer>
 </template>

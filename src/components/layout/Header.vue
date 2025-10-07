@@ -18,7 +18,8 @@
         <router-link to="/scan" class="nav-link">{{ t('navigation.scan1') }}</router-link>
       </nav>
       
-      <LanguageSwitcher />
+      <!-- Ajoute l'écouteur d'événement ici -->
+      <LanguageSwitcher @language-changed="reloadPage" />
     </div>
   </header>
 </template>
@@ -52,6 +53,11 @@ const t = (key) => {
   let value = translations
   for (const k of keys) value = value[k]
   return value[languageStore.current] || value['fr']
+}
+
+// Fonction pour recharger la page quand la langue change
+const reloadPage = () => {
+  window.location.reload()
 }
 </script>
 

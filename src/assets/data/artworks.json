@@ -93,5 +93,571 @@
       "wo": "/videos/artwork-2-wo.mp4"
     },
     "model3d": "src/assets/images/artworks/artwork-2.jpg"
+  },
+  {
+    "id": "artwork-1",
+    "isNew": true,  
+    "code": "MCA-001",  
+     "title": {
+    "fr": "Masque Ngil",
+    "en": "Ngil Mask",
+    "wo": "Masque Ngil"
+  },
+  "artist": {
+    "fr": "Artiste anonyme",
+    "en": "Anonymous Artist",
+    "wo": "Artiste bu kenn nekk"
+  },
+  "period": {
+    "fr": "XIXe – début du XXe siècle",
+    "en": "19th – early 20th century",
+    "wo": "Gànnaar 19 – biir 20e atum"
+  },
+
+    "description": {
+    "fr": "Masque en bois sculpté avec soin, au visage allongé et aux traits stylisés. Les yeux sont étirés et les contours épurés, créant une expression à la fois sereine et mystérieuse. Ces masques étaient souvent ornés de pigments naturels et parfois de fibres ou de cuir.",
+    "en": "Hand-carved wooden mask with an elongated face and stylized features. The eyes are narrow and contours refined, creating an expression both serene and mysterious. These masks were often decorated with natural pigments and sometimes fibers or leather.",
+    "wo": "Masque bu des ci garab, kanam mu metti te ay tuur yu stylisé. Ñaari i liggéey ñu ndaw te yu réew, dafay crééer benn expression bu jàmm ak bu am solo. Masque yi dañuy def ci pigments yu natural te ñaari i bind walla cuir."
+  },
+  "history": {
+    "fr": "Depuis des siècles, le peuple Fang du Gabon utilise ces masques lors de cérémonies d’initiation, de funérailles et de fêtes rituelles. Ils sont transmis de génération en génération et témoignent de la richesse artistique et spirituelle des sociétés africaines traditionnelles.",
+    "en": "For centuries, the Fang people of Gabon have used these masks during initiation ceremonies, funerals, and ritual festivals. They are passed down from generation to generation, showcasing the artistic and spiritual richness of traditional African societies.",
+    "wo": "Ci at yu nekk, réewum Fang ci Gabon dañuy jëfandikoo masque yi ci ceremonies d’initiation, funérailles ak ay fête rituelle. Ñu dëppoo jëf ci mbir yu taxaw ak ay tuur yu mag ci cosaan Africain."
+  },
+  "cultural": {
+    "fr": "Le masque incarne la connexion entre le monde des vivants et celui des ancêtres. Il symbolise la protection de la communauté, la sagesse des anciens et la préservation des traditions. Il reflète également la manière dont l’art africain allie esthétique et fonction sociale et spirituelle.",
+    "en": "The mask embodies the connection between the world of the living and that of the ancestors. It symbolizes community protection, ancestral wisdom, and the preservation of traditions. It also reflects how African art combines aesthetic beauty with social and spiritual function.",
+    "wo": "Masque boobu dafay wone njariñ ci biir aduna yi dox ak tuur yi. Dafay symboliser protection bu réew, ay tuur yu mag ak njariñ yu aada. Itam dafay wone ni art Africain dañuy jëfandikoo esthetique ak fonction sociale ak spirituelle."
+  },
+    "image": "src/assets/images/artworks/artwork-1.jpg",
+      "audio": {
+        "fr": "src/audio/descriptions/artwork-1-fr.mp3",
+        "en": "src/audio/descriptions/artwork-1-en.mp3",
+        "wo": "src/audio/descriptions/artwork-1-wo.mp3"
+    },
+      "video": {
+      "fr": "/videos/artwork-1-fr.mp4",
+      "en": "/videos/artwork-1-en.mp4",
+      "wo": "/videos/artwork-1-wo.mp4"
+    },
+    "model3d": null
+    
+  },
+  {
+    "id": "artwork-2",
+    "code": "MCA-002",
+  "title": {
+    "fr": "Statue Nkisi Nkondi",
+    "en": "Nkisi Nkondi Statue",
+    "wo": "Statue Nkisi Nkondi"
+  },
+  "artist": {
+    "fr": "Artiste anonyme",
+    "en": "Anonymous Artist",
+    "wo": "Artiste bu kenn nekk"
+  },
+  "period": {
+    "fr": "XIXe siècle",
+    "en": "19th century",
+    "wo": "Gànnaar 19"
+  },
+  "description": {
+    "fr": "Sculpture en bois représentant un esprit protecteur ou vengeur, souvent clouée avec des pointes métalliques. Les Nkisi Nkondi servaient à protéger la communauté, résoudre les conflits et garantir la justice.",
+    "en": "Wooden sculpture representing a protective or vengeful spirit, often studded with metal nails. Nkisi Nkondi were used to protect the community, resolve conflicts, and enforce justice.",
+    "wo": "Sculpture bu des ci garab, dafay wone benn tuur yu am njariñ walla jàmm, dañuy teg i point yu métal. Nkisi Nkondi dañuy jëfandikoo ngir xeex ci réew, doxal njaxlaf ak am jàmm."
+  },
+  "history": {
+    "fr": "Ces statues étaient activées par des rituels et des incantations, chaque clou ou objet inséré symbolisant un vœu, une promesse ou un serment. Elles jouaient un rôle central dans la vie sociale et spirituelle des communautés Kongo.",
+    "en": "These statues were activated through rituals and incantations, with each inserted nail or object symbolizing a wish, promise, or oath. They played a central role in the social and spiritual life of Kongo communities.",
+    "wo": "Statue yi dañuy wër ci rites ak incantations, bu kenn point walla objet yu def dafay symboliser benn bopp, benn njariñ walla benn serment. Ñu am solo ci cosaan ak aadaa yu réew Kongo."
+  },
+  "cultural": {
+    "fr": "Le Nkisi Nkondi incarne la puissance spirituelle et la responsabilité collective. Il reflète l’art africain comme moyen de réguler la société, de relier le visible à l’invisible et de transmettre les valeurs culturelles aux générations futures.",
+    "en": "The Nkisi Nkondi embodies spiritual power and collective responsibility. It reflects African art as a way to regulate society, connect the visible and invisible, and pass cultural values to future generations.",
+    "wo": "Nkisi Nkondi dafay wone njariñ yu mag ak responsabilité bu réew. Dafay wone ni art Africain dañuy jëfandikoo ngir doxal réew, yëgal aduna yu gis ak yu gis dara, te bind aada yu réew ci at yi jëm ci mbirum."
+  },
+    "image": "src/assets/images/artworks/artwork-2.jpg",
+    "audio": {
+      "fr": "/audio/descriptions/artwork-2-fr.mp3",
+      "en": "/audio/descriptions/artwork-2-en.mp3",
+      "wo": "/audio/descriptions/artwork-2-wo.mp3"
+    },
+       "video": {
+      "fr": "/videos/artwork-2-fr.mp4",
+      "en": "/videos/artwork-2-en.mp4",
+      "wo": "/videos/artwork-2-wo.mp4"
+    },
+    "model3d": "src/assets/images/artworks/artwork-2.jpg"
+  },
+
+
+
+
+    {
+    "id": "artwork-3",
+    "code": "MCA-003",
+  "title": {
+    "fr": "Statue Nkisi Nkondi",
+    "en": "Nkisi Nkondi Statue",
+    "wo": "Statue Nkisi Nkondi"
+  },
+  
+  "artist": {
+    "fr": "Artiste anonyme",
+    "en": "Anonymous Artist",
+    "wo": "Artiste bu kenn nekk"
+  },
+  "period": {
+    "fr": "XIXe siècle",
+    "en": "19th century",
+    "wo": "Gànnaar 19"
+  },
+  "description": {
+    "fr": "Sculpture en bois représentant un esprit protecteur ou vengeur, souvent clouée avec des pointes métalliques. Les Nkisi Nkondi servaient à protéger la communauté, résoudre les conflits et garantir la justice.",
+    "en": "Wooden sculpture representing a protective or vengeful spirit, often studded with metal nails. Nkisi Nkondi were used to protect the community, resolve conflicts, and enforce justice.",
+    "wo": "Sculpture bu des ci garab, dafay wone benn tuur yu am njariñ walla jàmm, dañuy teg i point yu métal. Nkisi Nkondi dañuy jëfandikoo ngir xeex ci réew, doxal njaxlaf ak am jàmm."
+  },
+  "history": {
+    "fr": "Ces statues étaient activées par des rituels et des incantations, chaque clou ou objet inséré symbolisant un vœu, une promesse ou un serment. Elles jouaient un rôle central dans la vie sociale et spirituelle des communautés Kongo.",
+    "en": "These statues were activated through rituals and incantations, with each inserted nail or object symbolizing a wish, promise, or oath. They played a central role in the social and spiritual life of Kongo communities.",
+    "wo": "Statue yi dañuy wër ci rites ak incantations, bu kenn point walla objet yu def dafay symboliser benn bopp, benn njariñ walla benn serment. Ñu am solo ci cosaan ak aadaa yu réew Kongo."
+  },
+  "cultural": {
+    "fr": "Le Nkisi Nkondi incarne la puissance spirituelle et la responsabilité collective. Il reflète l’art africain comme moyen de réguler la société, de relier le visible à l’invisible et de transmettre les valeurs culturelles aux générations futures.",
+    "en": "The Nkisi Nkondi embodies spiritual power and collective responsibility. It reflects African art as a way to regulate society, connect the visible and invisible, and pass cultural values to future generations.",
+    "wo": "Nkisi Nkondi dafay wone njariñ yu mag ak responsabilité bu réew. Dafay wone ni art Africain dañuy jëfandikoo ngir doxal réew, yëgal aduna yu gis ak yu gis dara, te bind aada yu réew ci at yi jëm ci mbirum."
+  },
+    "image": "src/assets/images/artworks/artwork-2.jpg",
+    "audio": {
+      "fr": "/audio/descriptions/artwork-2-fr.mp3",
+      "en": "/audio/descriptions/artwork-2-en.mp3",
+      "wo": "/audio/descriptions/artwork-2-wo.mp3"
+    },
+       "video": {
+      "fr": "/videos/artwork-2-fr.mp4",
+      "en": "/videos/artwork-2-en.mp4",
+      "wo": "/videos/artwork-2-wo.mp4"
+    },
+    "model3d": "src/assets/images/artworks/artwork-2.jpg"
+  },
+    {
+    "id": "artwork-3",
+    "code": "MCA-003",
+  "title": {
+    "fr": "Statue Nkisi Nkondi",
+    "en": "Nkisi Nkondi Statue",
+    "wo": "Statue Nkisi Nkondi"
+  },
+  
+  "artist": {
+    "fr": "Artiste anonyme",
+    "en": "Anonymous Artist",
+    "wo": "Artiste bu kenn nekk"
+  },
+  "period": {
+    "fr": "XIXe siècle",
+    "en": "19th century",
+    "wo": "Gànnaar 19"
+  },
+  "description": {
+    "fr": "Sculpture en bois représentant un esprit protecteur ou vengeur, souvent clouée avec des pointes métalliques. Les Nkisi Nkondi servaient à protéger la communauté, résoudre les conflits et garantir la justice.",
+    "en": "Wooden sculpture representing a protective or vengeful spirit, often studded with metal nails. Nkisi Nkondi were used to protect the community, resolve conflicts, and enforce justice.",
+    "wo": "Sculpture bu des ci garab, dafay wone benn tuur yu am njariñ walla jàmm, dañuy teg i point yu métal. Nkisi Nkondi dañuy jëfandikoo ngir xeex ci réew, doxal njaxlaf ak am jàmm."
+  },
+  "history": {
+    "fr": "Ces statues étaient activées par des rituels et des incantations, chaque clou ou objet inséré symbolisant un vœu, une promesse ou un serment. Elles jouaient un rôle central dans la vie sociale et spirituelle des communautés Kongo.",
+    "en": "These statues were activated through rituals and incantations, with each inserted nail or object symbolizing a wish, promise, or oath. They played a central role in the social and spiritual life of Kongo communities.",
+    "wo": "Statue yi dañuy wër ci rites ak incantations, bu kenn point walla objet yu def dafay symboliser benn bopp, benn njariñ walla benn serment. Ñu am solo ci cosaan ak aadaa yu réew Kongo."
+  },
+  "cultural": {
+    "fr": "Le Nkisi Nkondi incarne la puissance spirituelle et la responsabilité collective. Il reflète l’art africain comme moyen de réguler la société, de relier le visible à l’invisible et de transmettre les valeurs culturelles aux générations futures.",
+    "en": "The Nkisi Nkondi embodies spiritual power and collective responsibility. It reflects African art as a way to regulate society, connect the visible and invisible, and pass cultural values to future generations.",
+    "wo": "Nkisi Nkondi dafay wone njariñ yu mag ak responsabilité bu réew. Dafay wone ni art Africain dañuy jëfandikoo ngir doxal réew, yëgal aduna yu gis ak yu gis dara, te bind aada yu réew ci at yi jëm ci mbirum."
+  },
+    "image": "src/assets/images/artworks/artwork-2.jpg",
+    "audio": {
+      "fr": "/audio/descriptions/artwork-2-fr.mp3",
+      "en": "/audio/descriptions/artwork-2-en.mp3",
+      "wo": "/audio/descriptions/artwork-2-wo.mp3"
+    },
+       "video": {
+      "fr": "/videos/artwork-2-fr.mp4",
+      "en": "/videos/artwork-2-en.mp4",
+      "wo": "/videos/artwork-2-wo.mp4"
+    },
+    "model3d": "src/assets/images/artworks/artwork-2.jpg"
+  },
+    {
+    "id": "artwork-3",
+    "code": "MCA-003",
+  "title": {
+    "fr": "Statue Nkisi Nkondi",
+    "en": "Nkisi Nkondi Statue",
+    "wo": "Statue Nkisi Nkondi"
+  },
+  
+  "artist": {
+    "fr": "Artiste anonyme",
+    "en": "Anonymous Artist",
+    "wo": "Artiste bu kenn nekk"
+  },
+  "period": {
+    "fr": "XIXe siècle",
+    "en": "19th century",
+    "wo": "Gànnaar 19"
+  },
+  "description": {
+    "fr": "Sculpture en bois représentant un esprit protecteur ou vengeur, souvent clouée avec des pointes métalliques. Les Nkisi Nkondi servaient à protéger la communauté, résoudre les conflits et garantir la justice.",
+    "en": "Wooden sculpture representing a protective or vengeful spirit, often studded with metal nails. Nkisi Nkondi were used to protect the community, resolve conflicts, and enforce justice.",
+    "wo": "Sculpture bu des ci garab, dafay wone benn tuur yu am njariñ walla jàmm, dañuy teg i point yu métal. Nkisi Nkondi dañuy jëfandikoo ngir xeex ci réew, doxal njaxlaf ak am jàmm."
+  },
+  "history": {
+    "fr": "Ces statues étaient activées par des rituels et des incantations, chaque clou ou objet inséré symbolisant un vœu, une promesse ou un serment. Elles jouaient un rôle central dans la vie sociale et spirituelle des communautés Kongo.",
+    "en": "These statues were activated through rituals and incantations, with each inserted nail or object symbolizing a wish, promise, or oath. They played a central role in the social and spiritual life of Kongo communities.",
+    "wo": "Statue yi dañuy wër ci rites ak incantations, bu kenn point walla objet yu def dafay symboliser benn bopp, benn njariñ walla benn serment. Ñu am solo ci cosaan ak aadaa yu réew Kongo."
+  },
+  "cultural": {
+    "fr": "Le Nkisi Nkondi incarne la puissance spirituelle et la responsabilité collective. Il reflète l’art africain comme moyen de réguler la société, de relier le visible à l’invisible et de transmettre les valeurs culturelles aux générations futures.",
+    "en": "The Nkisi Nkondi embodies spiritual power and collective responsibility. It reflects African art as a way to regulate society, connect the visible and invisible, and pass cultural values to future generations.",
+    "wo": "Nkisi Nkondi dafay wone njariñ yu mag ak responsabilité bu réew. Dafay wone ni art Africain dañuy jëfandikoo ngir doxal réew, yëgal aduna yu gis ak yu gis dara, te bind aada yu réew ci at yi jëm ci mbirum."
+  },
+    "image": "src/assets/images/artworks/artwork-2.jpg",
+    "audio": {
+      "fr": "/audio/descriptions/artwork-2-fr.mp3",
+      "en": "/audio/descriptions/artwork-2-en.mp3",
+      "wo": "/audio/descriptions/artwork-2-wo.mp3"
+    },
+       "video": {
+      "fr": "/videos/artwork-2-fr.mp4",
+      "en": "/videos/artwork-2-en.mp4",
+      "wo": "/videos/artwork-2-wo.mp4"
+    },
+    "model3d": "src/assets/images/artworks/artwork-2.jpg"
+  },
+    {
+    "id": "artwork-3",
+    "code": "MCA-003",
+  "title": {
+    "fr": "Statue Nkisi Nkondi",
+    "en": "Nkisi Nkondi Statue",
+    "wo": "Statue Nkisi Nkondi"
+  },
+  
+  "artist": {
+    "fr": "Artiste anonyme",
+    "en": "Anonymous Artist",
+    "wo": "Artiste bu kenn nekk"
+  },
+  "period": {
+    "fr": "XIXe siècle",
+    "en": "19th century",
+    "wo": "Gànnaar 19"
+  },
+  "description": {
+    "fr": "Sculpture en bois représentant un esprit protecteur ou vengeur, souvent clouée avec des pointes métalliques. Les Nkisi Nkondi servaient à protéger la communauté, résoudre les conflits et garantir la justice.",
+    "en": "Wooden sculpture representing a protective or vengeful spirit, often studded with metal nails. Nkisi Nkondi were used to protect the community, resolve conflicts, and enforce justice.",
+    "wo": "Sculpture bu des ci garab, dafay wone benn tuur yu am njariñ walla jàmm, dañuy teg i point yu métal. Nkisi Nkondi dañuy jëfandikoo ngir xeex ci réew, doxal njaxlaf ak am jàmm."
+  },
+  "history": {
+    "fr": "Ces statues étaient activées par des rituels et des incantations, chaque clou ou objet inséré symbolisant un vœu, une promesse ou un serment. Elles jouaient un rôle central dans la vie sociale et spirituelle des communautés Kongo.",
+    "en": "These statues were activated through rituals and incantations, with each inserted nail or object symbolizing a wish, promise, or oath. They played a central role in the social and spiritual life of Kongo communities.",
+    "wo": "Statue yi dañuy wër ci rites ak incantations, bu kenn point walla objet yu def dafay symboliser benn bopp, benn njariñ walla benn serment. Ñu am solo ci cosaan ak aadaa yu réew Kongo."
+  },
+  "cultural": {
+    "fr": "Le Nkisi Nkondi incarne la puissance spirituelle et la responsabilité collective. Il reflète l’art africain comme moyen de réguler la société, de relier le visible à l’invisible et de transmettre les valeurs culturelles aux générations futures.",
+    "en": "The Nkisi Nkondi embodies spiritual power and collective responsibility. It reflects African art as a way to regulate society, connect the visible and invisible, and pass cultural values to future generations.",
+    "wo": "Nkisi Nkondi dafay wone njariñ yu mag ak responsabilité bu réew. Dafay wone ni art Africain dañuy jëfandikoo ngir doxal réew, yëgal aduna yu gis ak yu gis dara, te bind aada yu réew ci at yi jëm ci mbirum."
+  },
+    "image": "src/assets/images/artworks/artwork-2.jpg",
+    "audio": {
+      "fr": "/audio/descriptions/artwork-2-fr.mp3",
+      "en": "/audio/descriptions/artwork-2-en.mp3",
+      "wo": "/audio/descriptions/artwork-2-wo.mp3"
+    },
+       "video": {
+      "fr": "/videos/artwork-2-fr.mp4",
+      "en": "/videos/artwork-2-en.mp4",
+      "wo": "/videos/artwork-2-wo.mp4"
+    },
+    "model3d": "src/assets/images/artworks/artwork-2.jpg"
+  },
+    {
+    "id": "artwork-3",
+    "code": "MCA-003",
+  "title": {
+    "fr": "Statue Nkisi Nkondi",
+    "en": "Nkisi Nkondi Statue",
+    "wo": "Statue Nkisi Nkondi"
+  },
+  
+  "artist": {
+    "fr": "Artiste anonyme",
+    "en": "Anonymous Artist",
+    "wo": "Artiste bu kenn nekk"
+  },
+  "period": {
+    "fr": "XIXe siècle",
+    "en": "19th century",
+    "wo": "Gànnaar 19"
+  },
+  "description": {
+    "fr": "Sculpture en bois représentant un esprit protecteur ou vengeur, souvent clouée avec des pointes métalliques. Les Nkisi Nkondi servaient à protéger la communauté, résoudre les conflits et garantir la justice.",
+    "en": "Wooden sculpture representing a protective or vengeful spirit, often studded with metal nails. Nkisi Nkondi were used to protect the community, resolve conflicts, and enforce justice.",
+    "wo": "Sculpture bu des ci garab, dafay wone benn tuur yu am njariñ walla jàmm, dañuy teg i point yu métal. Nkisi Nkondi dañuy jëfandikoo ngir xeex ci réew, doxal njaxlaf ak am jàmm."
+  },
+  "history": {
+    "fr": "Ces statues étaient activées par des rituels et des incantations, chaque clou ou objet inséré symbolisant un vœu, une promesse ou un serment. Elles jouaient un rôle central dans la vie sociale et spirituelle des communautés Kongo.",
+    "en": "These statues were activated through rituals and incantations, with each inserted nail or object symbolizing a wish, promise, or oath. They played a central role in the social and spiritual life of Kongo communities.",
+    "wo": "Statue yi dañuy wër ci rites ak incantations, bu kenn point walla objet yu def dafay symboliser benn bopp, benn njariñ walla benn serment. Ñu am solo ci cosaan ak aadaa yu réew Kongo."
+  },
+  "cultural": {
+    "fr": "Le Nkisi Nkondi incarne la puissance spirituelle et la responsabilité collective. Il reflète l’art africain comme moyen de réguler la société, de relier le visible à l’invisible et de transmettre les valeurs culturelles aux générations futures.",
+    "en": "The Nkisi Nkondi embodies spiritual power and collective responsibility. It reflects African art as a way to regulate society, connect the visible and invisible, and pass cultural values to future generations.",
+    "wo": "Nkisi Nkondi dafay wone njariñ yu mag ak responsabilité bu réew. Dafay wone ni art Africain dañuy jëfandikoo ngir doxal réew, yëgal aduna yu gis ak yu gis dara, te bind aada yu réew ci at yi jëm ci mbirum."
+  },
+    "image": "src/assets/images/artworks/artwork-2.jpg",
+    "audio": {
+      "fr": "/audio/descriptions/artwork-2-fr.mp3",
+      "en": "/audio/descriptions/artwork-2-en.mp3",
+      "wo": "/audio/descriptions/artwork-2-wo.mp3"
+    },
+       "video": {
+      "fr": "/videos/artwork-2-fr.mp4",
+      "en": "/videos/artwork-2-en.mp4",
+      "wo": "/videos/artwork-2-wo.mp4"
+    },
+    "model3d": "src/assets/images/artworks/artwork-2.jpg"
+  },  {
+    "id": "artwork-3",
+    "code": "MCA-003",
+  "title": {
+    "fr": "Statue Nkisi Nkondi",
+    "en": "Nkisi Nkondi Statue",
+    "wo": "Statue Nkisi Nkondi"
+  },
+  
+  "artist": {
+    "fr": "Artiste anonyme",
+    "en": "Anonymous Artist",
+    "wo": "Artiste bu kenn nekk"
+  },
+  "period": {
+    "fr": "XIXe siècle",
+    "en": "19th century",
+    "wo": "Gànnaar 19"
+  },
+  "description": {
+    "fr": "Sculpture en bois représentant un esprit protecteur ou vengeur, souvent clouée avec des pointes métalliques. Les Nkisi Nkondi servaient à protéger la communauté, résoudre les conflits et garantir la justice.",
+    "en": "Wooden sculpture representing a protective or vengeful spirit, often studded with metal nails. Nkisi Nkondi were used to protect the community, resolve conflicts, and enforce justice.",
+    "wo": "Sculpture bu des ci garab, dafay wone benn tuur yu am njariñ walla jàmm, dañuy teg i point yu métal. Nkisi Nkondi dañuy jëfandikoo ngir xeex ci réew, doxal njaxlaf ak am jàmm."
+  },
+  "history": {
+    "fr": "Ces statues étaient activées par des rituels et des incantations, chaque clou ou objet inséré symbolisant un vœu, une promesse ou un serment. Elles jouaient un rôle central dans la vie sociale et spirituelle des communautés Kongo.",
+    "en": "These statues were activated through rituals and incantations, with each inserted nail or object symbolizing a wish, promise, or oath. They played a central role in the social and spiritual life of Kongo communities.",
+    "wo": "Statue yi dañuy wër ci rites ak incantations, bu kenn point walla objet yu def dafay symboliser benn bopp, benn njariñ walla benn serment. Ñu am solo ci cosaan ak aadaa yu réew Kongo."
+  },
+  "cultural": {
+    "fr": "Le Nkisi Nkondi incarne la puissance spirituelle et la responsabilité collective. Il reflète l’art africain comme moyen de réguler la société, de relier le visible à l’invisible et de transmettre les valeurs culturelles aux générations futures.",
+    "en": "The Nkisi Nkondi embodies spiritual power and collective responsibility. It reflects African art as a way to regulate society, connect the visible and invisible, and pass cultural values to future generations.",
+    "wo": "Nkisi Nkondi dafay wone njariñ yu mag ak responsabilité bu réew. Dafay wone ni art Africain dañuy jëfandikoo ngir doxal réew, yëgal aduna yu gis ak yu gis dara, te bind aada yu réew ci at yi jëm ci mbirum."
+  },
+    "image": "src/assets/images/artworks/artwork-2.jpg",
+    "audio": {
+      "fr": "/audio/descriptions/artwork-2-fr.mp3",
+      "en": "/audio/descriptions/artwork-2-en.mp3",
+      "wo": "/audio/descriptions/artwork-2-wo.mp3"
+    },
+       "video": {
+      "fr": "/videos/artwork-2-fr.mp4",
+      "en": "/videos/artwork-2-en.mp4",
+      "wo": "/videos/artwork-2-wo.mp4"
+    },
+    "model3d": "src/assets/images/artworks/artwork-2.jpg"
+  },
+    {
+    "id": "artwork-3",
+    "code": "MCA-003",
+  "title": {
+    "fr": "Statue Nkisi Nkondi",
+    "en": "Nkisi Nkondi Statue",
+    "wo": "Statue Nkisi Nkondi"
+  },
+  
+  "artist": {
+    "fr": "Artiste anonyme",
+    "en": "Anonymous Artist",
+    "wo": "Artiste bu kenn nekk"
+  },
+  "period": {
+    "fr": "XIXe siècle",
+    "en": "19th century",
+    "wo": "Gànnaar 19"
+  },
+  "description": {
+    "fr": "Sculpture en bois représentant un esprit protecteur ou vengeur, souvent clouée avec des pointes métalliques. Les Nkisi Nkondi servaient à protéger la communauté, résoudre les conflits et garantir la justice.",
+    "en": "Wooden sculpture representing a protective or vengeful spirit, often studded with metal nails. Nkisi Nkondi were used to protect the community, resolve conflicts, and enforce justice.",
+    "wo": "Sculpture bu des ci garab, dafay wone benn tuur yu am njariñ walla jàmm, dañuy teg i point yu métal. Nkisi Nkondi dañuy jëfandikoo ngir xeex ci réew, doxal njaxlaf ak am jàmm."
+  },
+  "history": {
+    "fr": "Ces statues étaient activées par des rituels et des incantations, chaque clou ou objet inséré symbolisant un vœu, une promesse ou un serment. Elles jouaient un rôle central dans la vie sociale et spirituelle des communautés Kongo.",
+    "en": "These statues were activated through rituals and incantations, with each inserted nail or object symbolizing a wish, promise, or oath. They played a central role in the social and spiritual life of Kongo communities.",
+    "wo": "Statue yi dañuy wër ci rites ak incantations, bu kenn point walla objet yu def dafay symboliser benn bopp, benn njariñ walla benn serment. Ñu am solo ci cosaan ak aadaa yu réew Kongo."
+  },
+  "cultural": {
+    "fr": "Le Nkisi Nkondi incarne la puissance spirituelle et la responsabilité collective. Il reflète l’art africain comme moyen de réguler la société, de relier le visible à l’invisible et de transmettre les valeurs culturelles aux générations futures.",
+    "en": "The Nkisi Nkondi embodies spiritual power and collective responsibility. It reflects African art as a way to regulate society, connect the visible and invisible, and pass cultural values to future generations.",
+    "wo": "Nkisi Nkondi dafay wone njariñ yu mag ak responsabilité bu réew. Dafay wone ni art Africain dañuy jëfandikoo ngir doxal réew, yëgal aduna yu gis ak yu gis dara, te bind aada yu réew ci at yi jëm ci mbirum."
+  },
+    "image": "src/assets/images/artworks/artwork-2.jpg",
+    "audio": {
+      "fr": "/audio/descriptions/artwork-2-fr.mp3",
+      "en": "/audio/descriptions/artwork-2-en.mp3",
+      "wo": "/audio/descriptions/artwork-2-wo.mp3"
+    },
+       "video": {
+      "fr": "/videos/artwork-2-fr.mp4",
+      "en": "/videos/artwork-2-en.mp4",
+      "wo": "/videos/artwork-2-wo.mp4"
+    },
+    "model3d": "src/assets/images/artworks/artwork-2.jpg"
+  },  {
+    "id": "artwork-3",
+    "code": "MCA-003",
+  "title": {
+    "fr": "Statue Nkisi Nkondi",
+    "en": "Nkisi Nkondi Statue",
+    "wo": "Statue Nkisi Nkondi"
+  },
+  
+  "artist": {
+    "fr": "Artiste anonyme",
+    "en": "Anonymous Artist",
+    "wo": "Artiste bu kenn nekk"
+  },
+  "period": {
+    "fr": "XIXe siècle",
+    "en": "19th century",
+    "wo": "Gànnaar 19"
+  },
+  "description": {
+    "fr": "Sculpture en bois représentant un esprit protecteur ou vengeur, souvent clouée avec des pointes métalliques. Les Nkisi Nkondi servaient à protéger la communauté, résoudre les conflits et garantir la justice.",
+    "en": "Wooden sculpture representing a protective or vengeful spirit, often studded with metal nails. Nkisi Nkondi were used to protect the community, resolve conflicts, and enforce justice.",
+    "wo": "Sculpture bu des ci garab, dafay wone benn tuur yu am njariñ walla jàmm, dañuy teg i point yu métal. Nkisi Nkondi dañuy jëfandikoo ngir xeex ci réew, doxal njaxlaf ak am jàmm."
+  },
+  "history": {
+    "fr": "Ces statues étaient activées par des rituels et des incantations, chaque clou ou objet inséré symbolisant un vœu, une promesse ou un serment. Elles jouaient un rôle central dans la vie sociale et spirituelle des communautés Kongo.",
+    "en": "These statues were activated through rituals and incantations, with each inserted nail or object symbolizing a wish, promise, or oath. They played a central role in the social and spiritual life of Kongo communities.",
+    "wo": "Statue yi dañuy wër ci rites ak incantations, bu kenn point walla objet yu def dafay symboliser benn bopp, benn njariñ walla benn serment. Ñu am solo ci cosaan ak aadaa yu réew Kongo."
+  },
+  "cultural": {
+    "fr": "Le Nkisi Nkondi incarne la puissance spirituelle et la responsabilité collective. Il reflète l’art africain comme moyen de réguler la société, de relier le visible à l’invisible et de transmettre les valeurs culturelles aux générations futures.",
+    "en": "The Nkisi Nkondi embodies spiritual power and collective responsibility. It reflects African art as a way to regulate society, connect the visible and invisible, and pass cultural values to future generations.",
+    "wo": "Nkisi Nkondi dafay wone njariñ yu mag ak responsabilité bu réew. Dafay wone ni art Africain dañuy jëfandikoo ngir doxal réew, yëgal aduna yu gis ak yu gis dara, te bind aada yu réew ci at yi jëm ci mbirum."
+  },
+    "image": "src/assets/images/artworks/artwork-2.jpg",
+    "audio": {
+      "fr": "/audio/descriptions/artwork-2-fr.mp3",
+      "en": "/audio/descriptions/artwork-2-en.mp3",
+      "wo": "/audio/descriptions/artwork-2-wo.mp3"
+    },
+       "video": {
+      "fr": "/videos/artwork-2-fr.mp4",
+      "en": "/videos/artwork-2-en.mp4",
+      "wo": "/videos/artwork-2-wo.mp4"
+    },
+    "model3d": "src/assets/images/artworks/artwork-2.jpg"
+  },
+  {
+    "id": "artwork-3",
+    "code": "MCA-003",
+    "title": {
+      "fr": "Statue Nkisi Nkondi",
+      "en": "Nkisi Nkondi Statue",
+      "wo": "Statue Nkisi Nkondi"
+    },
+    "artist": {
+      "fr": "Artiste anonyme",
+      "en": "Anonymous Artist",
+      "wo": "Artiste bu kenn nekk"
+    },
+    "period": {
+      "fr": "XIXe siècle",
+      "en": "19th century",
+      "wo": "Gànnaar 19"
+    },
+    "description": {
+      "fr": "Sculpture en bois représentant un esprit protecteur ou vengeur, souvent clouée avec des pointes métalliques. Les Nkisi Nkondi servaient à protéger la communauté, résoudre les conflits et garantir la justice.",
+      "en": "Wooden sculpture representing a protective or vengeful spirit, often studded with metal nails. Nkisi Nkondi were used to protect the community, resolve conflicts, and enforce justice.",
+      "wo": "Sculpture bu des ci garab, dafay wone benn tuur yu am njariñ walla jàmm, dañuy teg i point yu métal. Nkisi Nkondi dañuy jëfandikoo ngir xeex ci réew, doxal njaxlaf ak am jàmm."
+    },
+    "history": {
+      "fr": "Ces statues étaient activées par des rituels et des incantations, chaque clou ou objet inséré symbolisant un vœu, une promesse ou un serment. Elles jouaient un rôle central dans la vie sociale et spirituelle des communautés Kongo.",
+      "en": "These statues were activated through rituals and incantations, with each inserted nail or object symbolizing a wish, promise, or oath. They played a central role in the social and spiritual life of Kongo communities.",
+      "wo": "Statue yi dañuy wër ci rites ak incantations, bu kenn point walla objet yu def dafay symboliser benn bopp, benn njariñ walla benn serment. Ñu am solo ci cosaan ak aadaa yu réew Kongo."
+    },
+    "cultural": {
+      "fr": "Le Nkisi Nkondi incarne la puissance spirituelle et la responsabilité collective. Il reflète l’art africain comme moyen de réguler la société, de relier le visible à l’invisible et de transmettre les valeurs culturelles aux générations futures.",
+      "en": "The Nkisi Nkondi embodies spiritual power and collective responsibility. It reflects African art as a way to regulate society, connect the visible and invisible, and pass cultural values to future generations.",
+      "wo": "Nkisi Nkondi dafay wone njariñ yu mag ak responsabilité bu réew. Dafay wone ni art Africain dañuy jëfandikoo ngir doxal réew, yëgal aduna yu gis ak yu gis dara, te bind aada yu réew ci at yi jëm ci mbirum."
+    },
+    "image": "src/assets/images/artworks/artwork-3.jpg",
+    "audio": {
+      "fr": "/audio/descriptions/artwork-3-fr.mp3",
+      "en": "/audio/descriptions/artwork-3-en.mp3",
+      "wo": "/audio/descriptions/artwork-3-wo.mp3"
+    },
+    "video": {
+      "fr": "/videos/artwork-3-fr.mp4",
+      "en": "/videos/artwork-3-en.mp4",
+      "wo": "/videos/artwork-3-wo.mp4"
+    },
+    "model3d": "src/assets/images/artworks/artwork-3.jpg"
+  },
+    {
+    "id": "artwork-3",
+    "code": "MCA-003",
+  "title": {
+    "fr": "Statue Nkisi Nkondi",
+    "en": "Nkisi Nkondi Statue",
+    "wo": "Statue Nkisi Nkondi"
+  },
+  
+  "artist": {
+    "fr": "Artiste anonyme",
+    "en": "Anonymous Artist",
+    "wo": "Artiste bu kenn nekk"
+  },
+  "period": {
+    "fr": "XIXe siècle",
+    "en": "19th century",
+    "wo": "Gànnaar 19"
+  },
+  "description": {
+    "fr": "Sculpture en bois représentant un esprit protecteur ou vengeur, souvent clouée avec des pointes métalliques. Les Nkisi Nkondi servaient à protéger la communauté, résoudre les conflits et garantir la justice.",
+    "en": "Wooden sculpture representing a protective or vengeful spirit, often studded with metal nails. Nkisi Nkondi were used to protect the community, resolve conflicts, and enforce justice.",
+    "wo": "Sculpture bu des ci garab, dafay wone benn tuur yu am njariñ walla jàmm, dañuy teg i point yu métal. Nkisi Nkondi dañuy jëfandikoo ngir xeex ci réew, doxal njaxlaf ak am jàmm."
+  },
+  "history": {
+    "fr": "Ces statues étaient activées par des rituels et des incantations, chaque clou ou objet inséré symbolisant un vœu, une promesse ou un serment. Elles jouaient un rôle central dans la vie sociale et spirituelle des communautés Kongo.",
+    "en": "These statues were activated through rituals and incantations, with each inserted nail or object symbolizing a wish, promise, or oath. They played a central role in the social and spiritual life of Kongo communities.",
+    "wo": "Statue yi dañuy wër ci rites ak incantations, bu kenn point walla objet yu def dafay symboliser benn bopp, benn njariñ walla benn serment. Ñu am solo ci cosaan ak aadaa yu réew Kongo."
+  },
+  "cultural": {
+    "fr": "Le Nkisi Nkondi incarne la puissance spirituelle et la responsabilité collective. Il reflète l’art africain comme moyen de réguler la société, de relier le visible à l’invisible et de transmettre les valeurs culturelles aux générations futures.",
+    "en": "The Nkisi Nkondi embodies spiritual power and collective responsibility. It reflects African art as a way to regulate society, connect the visible and invisible, and pass cultural values to future generations.",
+    "wo": "Nkisi Nkondi dafay wone njariñ yu mag ak responsabilité bu réew. Dafay wone ni art Africain dañuy jëfandikoo ngir doxal réew, yëgal aduna yu gis ak yu gis dara, te bind aada yu réew ci at yi jëm ci mbirum."
+  },
+    "image": "src/assets/images/artworks/artwork-2.jpg",
+    "audio": {
+      "fr": "/audio/descriptions/artwork-2-fr.mp3",
+      "en": "/audio/descriptions/artwork-2-en.mp3",
+      "wo": "/audio/descriptions/artwork-2-wo.mp3"
+    },
+       "video": {
+      "fr": "/videos/artwork-2-fr.mp4",
+      "en": "/videos/artwork-2-en.mp4",
+      "wo": "/videos/artwork-2-wo.mp4"
+    },
+    "model3d": "src/assets/images/artworks/artwork-2.jpg"
   }
 ]

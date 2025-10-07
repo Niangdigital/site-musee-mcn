@@ -177,6 +177,18 @@
       "en": "2D View",
       "wo": "Xool 2D"
     },
+   "gotoScan": {
+  "fr": "Scanner une œuvre",
+  "en": "Scan an artwork",
+  "wo": "Sànnal nataal bu nataal bi"
+},
+"scanShort": {
+  "fr": "Scanner",
+  "en": "Scan",
+  "wo": "Sànnal"
+}
+,
+
     "view3d": {
       "fr": "Vue 3D",
       "en": "3D View",

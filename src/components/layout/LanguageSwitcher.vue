@@ -17,12 +17,16 @@
 import { computed } from 'vue'
 import { useLanguageStore } from '../../stores/language'
 
+// Ajout pour pouvoir émettre
+const emit = defineEmits(['language-changed'])
+
 const languageStore = useLanguageStore()
 const languages = computed(() => languageStore.available)
 const current = computed(() => languageStore.current)
 
 const setLanguage = (lang) => {
   languageStore.setLanguage(lang)
+  emit('language-changed') // L'événement est bien émis quand on clique
 }
 
 const getLabel = (lang) => languageStore.labels[lang]

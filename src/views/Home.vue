@@ -32,12 +32,22 @@
       
       <section class="featured-section container">
         <h2> {{ t('artwork.featured') }}</h2>
-        <div class="grid grid-3">
-          <ArtworkCard
-            v-for="artwork in artworks.slice(0, 3)"
-            :key="artwork.id"
-            :artwork="artwork"
-          />
+        <div class="card-marquee-outer">
+          <div class="card-marquee-inner">
+            <div class="card-marquee-track">
+              <ArtworkCard
+                v-for="artwork in artworks.slice(0, 3)"
+                :key="artwork.id"
+                :artwork="artwork"
+              />
+              <!-- repeat for seamless infinite effect -->
+              <ArtworkCard
+                v-for="artwork in artworks.slice(0, 3)"
+                :key="artwork.id + '-repeat'"
+                :artwork="artwork"
+              />
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -90,7 +100,6 @@ const t = (key) => {
   margin-bottom: var(--space-8);
   opacity: 0.95;
   color: var(--color-white);
-
 }
 
 .action-buttons {
@@ -149,6 +158,45 @@ const t = (key) => {
   text-align: left;
 }
 
+/* --- Infinite Card Marquee --- */
+.card-marquee-outer {
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--space-4) 0;
+}
+
+.card-marquee-inner {
+  width: 100%;
+  position: relative;
+}
+
+.card-marquee-track {
+  display: flex;
+  gap: var(--space-6);
+  width: max-content;
+  animation: card-marquee-scroll 16s linear infinite;
+}
+
+@keyframes card-marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Style for cards inside the marquee */
+.card-marquee-track > * {
+  flex: 0 0 340px;
+  max-width: 340px;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .card-marquee-track > * {
+    flex-basis: 270px;
+    max-width: 270px;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-section {
     padding: var(--space-8) 0;
@@ -161,6 +209,11 @@ const t = (key) => {
   .btn-primary, .btn-secondary {
     width: 100%;
     justify-content: center;
+  }
+
+  .card-marquee-track > * {
+    flex-basis: 200px;
+    max-width: 200px;
   }
 }
 </style>

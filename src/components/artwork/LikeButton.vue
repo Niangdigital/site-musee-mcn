@@ -3,8 +3,10 @@
     class="like-button"
     :class="{ liked: isLiked }"
     @click="handleLike"
+    :aria-pressed="isLiked"
+    :title="isLiked ? t('likes.liked') : t('likes.like')"
   >
-    <span class="like-icon">{{ isLiked ? '❤️' : '🤍' }}</span>
+    <span class="like-icon" aria-hidden="true">{{ isLiked ? '❤️' : '🤍' }}</span>
     <span class="like-count">{{ likesCount }}</span>
     <span class="like-label">{{ isLiked ? t('likes.liked') : t('likes.like') }}</span>
   </button>
@@ -46,47 +48,62 @@ onMounted(() => {
 .like-button {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: white;
-  border: 2px solid #e5e7eb;
-  border-radius: 2rem;
+  gap: var(--space-1);
+  padding: 0.35rem 1.1rem;
+  background: var(--color-white);
+  border: 1.5px solid var(--color-gray-200);
+  border-radius: 1.5rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 0.98rem;
+  min-height: 2rem;
+  line-height: 1.1;
+  transition: 
+    background var(--transition-fast), 
+    border-color var(--transition-fast), 
+    transform var(--transition-fast), 
+    box-shadow var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  user-select: none;
 }
 
-.like-button:hover {
+.like-button:hover, .like-button:focus-visible {
   border-color: #fca5a5;
   background: #fef2f2;
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+  transform: scale(1.035);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.08);
+  outline: none;
 }
 
 .like-button.liked {
   background: #fef2f2;
   border-color: #ef4444;
-  animation: likeAnimation 0.4s ease;
+  animation: likeAnimation 0.30s ease;
 }
 
 .like-icon {
-  font-size: 1.25rem;
-  transition: transform 0.2s ease;
+  font-size: 1.11rem;
+  transition: transform var(--transition-fast);
+  line-height: 1;
+  display: flex;
+  align-items: center;
 }
 
-.like-button:hover .like-icon {
-  transform: scale(1.2);
+.like-button:hover .like-icon,
+.like-button:focus-visible .like-icon {
+  transform: scale(1.16);
 }
 
 .like-button.liked .like-icon {
-  animation: heartbeat 0.6s ease;
+  animation: heartbeat 0.45s ease;
 }
 
 .like-count {
-  font-size: 1rem;
-  color: #374151;
-  min-width: 20px;
+  font-size: 0.92rem;
+  color: var(--color-gray-700);
+  min-width: 18px;
   text-align: center;
+  font-variant-numeric: tabular-nums;
 }
 
 .like-button.liked .like-count {
@@ -94,8 +111,11 @@ onMounted(() => {
 }
 
 .like-label {
-  font-size: 0.938rem;
-  color: #6b7280;
+  font-size: 0.91rem;
+  color: var(--color-gray-500);
+  margin-left: var(--space-1);
+  letter-spacing: 0.01em;
+  transition: color var(--transition-fast);
 }
 
 .like-button.liked .like-label {
@@ -104,24 +124,37 @@ onMounted(() => {
 
 @keyframes likeAnimation {
   0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+  50% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
 
 @keyframes heartbeat {
   0%, 100% { transform: scale(1); }
-  25% { transform: scale(1.3); }
-  50% { transform: scale(1.1); }
-  75% { transform: scale(1.2); }
+  30% { transform: scale(1.22); }
+  60% { transform: scale(1.09); }
+  80% { transform: scale(1.15); }
 }
 
 @media (max-width: 768px) {
   .like-button {
-    padding: 0.625rem 1.25rem;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.93rem;
+    min-height: 1.65rem;
   }
-  
   .like-label {
     display: none;
   }
+  .like-icon { font-size: 1rem; }
+  .like-count { font-size: 0.88rem; min-width: 14px; }
+}
+
+@media (max-width: 480px) {
+  .like-button {
+    padding: 0.19rem 0.54rem;
+    min-height: 1.25rem;
+    font-size: 0.89rem;
+  }
+  .like-icon { font-size: 0.95rem; }
+  .like-count { font-size: 0.83rem; min-width: 12px; }
 }
 </style>
