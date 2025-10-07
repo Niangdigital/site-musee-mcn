@@ -87,9 +87,10 @@
   },
   "scanner": {
     "title": {
-     "fr": "Scannez le QR code de l'œuvre pour découvrir ses détails.",
-      "en": "Scan the artwork's QR code to discover its details.",
-      "wo": "Sànnal QR code bu nataal bi ngir xam lu jëm ci moom."
+  "fr": "Scannez le QR code ou saisissez le code de l’œuvre pour en savoir plus sur son histoire.",
+  "en": "Scan the QR code or enter the artwork code to learn more about its story.",
+  "wo": "Sànnal QR code bi walla bindal kodu nataal bi ngir xam lu jëm ci waa ji."
+
     },
     "instructions": {
     "fr": "Utilisez votre appareil pour scanner les QR codes situés juste devant l'œuvre et découvrir des informations détaillées en temps réel. Vous pouvez également saisir un code manuellement si nécessaire.",
@@ -103,9 +104,9 @@
       "wo": "Dugal QR Code"
     },
     "tabCode": {
-      "fr": "Entrer un code",
-      "en": "Enter a code",
-      "wo": "Dugal code"
+      "fr": "Entrer le code",
+      "en": "Enter the code",
+      "wo": "Dugal code bi"
     },
     "start": {
       "fr": "Démarrer le scan",

@@ -4,7 +4,6 @@
     
     <main class="scan-main container">
       <h1>{{ t('scanner.title') }}</h1>
-      <p class="scan-instructions">{{ t('scanner.instructions') }}</p>
       
       <!-- Tabs pour choisir mode -->
       <div class="scan-tabs">
