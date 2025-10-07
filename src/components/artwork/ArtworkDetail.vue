@@ -366,7 +366,7 @@ const goToScan = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f3f4f6;
+  background: #2c5530;
   border: 2px solid #e5e7eb;
   border-radius: 0.5rem;
   cursor: pointer;
@@ -374,9 +374,9 @@ const goToScan = () => {
 }
 
 .share-btn:hover {
-  background: #2c5530;
+  background: white;
   border-color: #2c5530;
-  color: white;
+  color: #2c5530;
   transform: translateY(-2px);
 }
 

@@ -155,7 +155,7 @@ const t = (key) => {
 .featured-section h2 {
   text-align: center;
   margin-bottom: var(--space-8);
-  text-align: left;
+  
 }
 
 /* --- Infinite Card Marquee --- */

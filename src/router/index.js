@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useLanguageStore } from '../stores/language.js' // ⚠️ AJOUTER CETTE LIGNE
 
-
-
 const routes = [
   {
     path: '/',
@@ -38,7 +36,15 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    // Toujours remonter en haut lors d'un changement de page
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
+  }
 })
 
 router.beforeEach((to, from, next) => {

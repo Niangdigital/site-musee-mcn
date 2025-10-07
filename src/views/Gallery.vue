@@ -101,6 +101,7 @@ const t = (key) => {
 
 .gallery-header h1 {
   margin-bottom: var(--space-6);
+  text-align: center;
 }
 
 
@@ -109,6 +110,7 @@ const t = (key) => {
     margin-bottom: var(--space-8);
     opacity: 0.95;
     color: var(--color-primary-dark);
+    text-align: center;
 }
 
 .no-results {
