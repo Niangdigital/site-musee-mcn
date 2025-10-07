@@ -2,7 +2,7 @@
   <div class="welcome-container">
     <!-- SPLASH SCREEN -->
     <div v-if="showSplash" class="splash-screen">
-      <div class="splash-bg">
+      <div class="splash-bg" :style="{ backgroundImage: splashBgStyle }">
         <div class="splash-content">
           <h1 class="logo-text">{{ splashText }}</h1>
           <button class="enter-button" @click="handleEnter">
@@ -14,7 +14,7 @@
     </div>
     
     <!-- LANGUAGE SELECTION -->
-    <div v-else class="welcome-screen">
+    <div v-else class="welcome-screen" :style="{ backgroundImage: welcomeBgStyle }">
       <div class="welcome-content">
         <!-- Audio Toggle Button -->
         <button 
@@ -75,13 +75,6 @@ const audioElement = ref(null)
 const cycleInterval = ref(null)
 const isCycling = ref(false)
 
-// Configuration audio
-const audioConfig = {
-  basePath: '/src/assets/audio/welcome',
-  format: 'mp3',
-  files: { fr: 'fr', en: 'en', wo: 'wo' }
-}
-
 const languages = [
   { code: 'fr', label: 'Français', flag: '🇫🇷' },
   { code: 'en', label: 'English', flag: '🇬🇧' },
@@ -99,12 +92,60 @@ const splashText = computed(() => translations[currentLang.value].splashTitle)
 const enterButtonText = computed(() => translations[currentLang.value].enterButton)
 const audioHintText = computed(() => translations[currentLang.value].audioHint)
 
-// Génère le chemin audio
-const getAudioPath = (langCode) => `${audioConfig.basePath}/${audioConfig.files[langCode]}.${audioConfig.format}`
+// Génération automatique des URLs d'images
+const museumBgUrl = computed(() => {
+  try {
+    return new URL('/src/assets/images/museum-bg.jpg', import.meta.url).href
+  } catch (e) {
+    console.error('Museum background image not found', e)
+    return ''
+  }
+})
+
+const languageBgUrl = computed(() => {
+  try {
+    return new URL('/src/assets/images/language-selection-bg.jpg', import.meta.url).href
+  } catch (e) {
+    console.error('Language selection background image not found', e)
+    return ''
+  }
+})
+
+// Styles de background avec gradient
+const splashBgStyle = computed(() => {
+  if (museumBgUrl.value) {
+    return `linear-gradient(135deg, rgba(44, 85, 48, 0.95) 0%, rgba(30, 58, 35, 0.95) 100%), url('${museumBgUrl.value}')`
+  }
+  return 'linear-gradient(135deg, #2c5530 0%, #1e3a23 100%)'
+})
+
+const welcomeBgStyle = computed(() => {
+  if (languageBgUrl.value) {
+    return `linear-gradient(135deg, rgba(44, 85, 48, 0.90) 0%, rgba(30, 58, 35, 0.90) 100%), url('${languageBgUrl.value}')`
+  }
+  return 'linear-gradient(135deg, #2c5530 0%, #1e3a23 100%)'
+})
+
+// Génération automatique des URLs audio
+const getAudioUrl = (langCode) => {
+  try {
+    return new URL(`/src/assets/audio/welcome/${langCode}.mp3`, import.meta.url).href
+  } catch (e) {
+    console.error(`Audio file not found for language: ${langCode}`, e)
+    return ''
+  }
+}
 
 // Joue l'audio
 const playAudio = async (langCode) => {
   if (!audioEnabled.value) return
+  
+  const audioUrl = getAudioUrl(langCode)
+  if (!audioUrl) {
+    console.warn(`No audio URL available for ${langCode}`)
+    return
+  }
+  
   try {
     if (audioElement.value) {
       audioElement.value.pause()
@@ -113,11 +154,13 @@ const playAudio = async (langCode) => {
       audioElement.value.removeEventListener('ended', handleEnded)
       audioElement.value.removeEventListener('error', handleError)
     }
-    audioElement.value = new Audio(getAudioPath(langCode))
+    
+    audioElement.value = new Audio(audioUrl)
     audioElement.value.muted = !audioEnabled.value
     audioElement.value.addEventListener('play', handlePlay)
     audioElement.value.addEventListener('ended', handleEnded)
     audioElement.value.addEventListener('error', handleError)
+    
     if (audioEnabled.value) await audioElement.value.play()
   } catch (error) {
     console.warn('Erreur lecture audio:', error)
@@ -125,11 +168,15 @@ const playAudio = async (langCode) => {
   }
 }
 
-const handlePlay = () => { isAudioPlaying.value = true }
+const handlePlay = () => { 
+  isAudioPlaying.value = true 
+}
+
 const handleEnded = () => {
   isAudioPlaying.value = false
   if (isCycling.value && !showSplash.value) cycleToNextLanguage()
 }
+
 const handleError = () => {
   console.warn(`Audio non trouvé pour ${currentLang.value}`)
   isAudioPlaying.value = false
@@ -178,7 +225,10 @@ watch(currentLang, (newLang) => {
 
 // Gestion du clic "Entrer"
 const handleEnter = () => {
-  if (cycleInterval.value) { clearInterval(cycleInterval.value); cycleInterval.value=null }
+  if (cycleInterval.value) { 
+    clearInterval(cycleInterval.value)
+    cycleInterval.value = null 
+  }
   showSplash.value = false
   isCycling.value = true
   setTimeout(() => playAudio(currentLang.value), 300)
@@ -203,14 +253,12 @@ onMounted(() => {
   if (savedState !== null) audioEnabled.value = savedState === 'true'
 })
 
-onUnmounted(() => { stopAudio(); isCycling.value=false; if(cycleInterval.value) clearInterval(cycleInterval.value) })
+onUnmounted(() => { 
+  stopAudio()
+  isCycling.value = false
+  if(cycleInterval.value) clearInterval(cycleInterval.value) 
+})
 </script>
-
-<style scoped>
-/* ton style existant reste inchangé */
-</style>
-
-
 
 <style scoped>
 .welcome-container {
@@ -228,9 +276,6 @@ onUnmounted(() => { stopAudio(); isCycling.value=false; if(cycleInterval.value) 
   width: 100%;
   height: 100%;
   background: linear-gradient(135deg, #2c5530 0%, #1e3a23 100%);
-  background-image: 
-    linear-gradient(135deg, rgba(44, 85, 48, 0.95) 0%, rgba(30, 58, 35, 0.95) 100%),
-    url('src/assets/images/museum-bg.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -343,9 +388,6 @@ onUnmounted(() => { stopAudio(); isCycling.value=false; if(cycleInterval.value) 
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #2c5530 0%, #1e3a23 100%);
-  background-image: 
-    linear-gradient(135deg, rgba(44, 85, 48, 0.90) 0%, rgba(30, 58, 35, 0.90) 100%),
-    url('src/assets/images/language-selection-bg.jpg');
   background-size: cover;
   background-position: center;
   padding: 2rem;

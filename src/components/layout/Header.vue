@@ -2,7 +2,13 @@
   <header class="header">
     <div class="container header-content">
       <router-link to="/home" class="logo">
-        <img v-if="logoSrc" :src="logoSrc" alt="MCA" class="logo-img" />
+        <img 
+          v-if="!logoError" 
+          :src="logoUrl" 
+          alt="MCA" 
+          class="logo-img"
+          @error="onLogoError"
+        />
         <span v-else class="logo-text">MCA</span>
       </router-link>
       
@@ -18,13 +24,28 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useLanguageStore } from '../../stores/language.js'
 import translations from '../../assets/data/translations.json'
 import LanguageSwitcher from './LanguageSwitcher.vue'
 
 const languageStore = useLanguageStore()
-const logoSrc = ref('/src/assets/images/logo-mca.png')
+const logoError = ref(false)
+
+// Génération automatique de l'URL du logo
+const logoUrl = computed(() => {
+  try {
+    return new URL('/src/assets/images/logo-mca.png', import.meta.url).href
+  } catch (e) {
+    console.error('Logo not found', e)
+    return ''
+  }
+})
+
+const onLogoError = () => {
+  logoError.value = true
+  console.error('Failed to load logo')
+}
 
 const t = (key) => {
   const keys = key.split('.')
