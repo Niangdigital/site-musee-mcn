@@ -205,6 +205,10 @@ const t = (key) => {
   .action-buttons {
     flex-direction: column;
   }
+
+  .featured-section {
+  padding:  2rem 0;
+}
   
   .btn-primary, .btn-secondary {
     width: 100%;

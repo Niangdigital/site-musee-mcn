@@ -94,11 +94,25 @@ const onImageError = () => {
   object-fit: contain;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   border-radius: var(--border-radius);
+  transition: transform 0.3s ease;
+}
+
+/* ✅ Limite sur mobile */
+@media (max-width: 768px) {
+  .artwork-image {
+    max-width: 100%;
+    max-height: 450px;
+    width: 100%;
+    height: auto;
+  }
+
+  .image-container {
+    padding: var(--space-3);
+  }
 }
 
 .image-frame {
   position: absolute;
- 
   border: 4px solid var(--color-secondary);
   border-radius: var(--border-radius-lg);
   pointer-events: none;

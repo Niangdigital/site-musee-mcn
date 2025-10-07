@@ -2,6 +2,28 @@
   <div class="artwork-detail">
     <!-- SECTION GAUCHE : Viewer & Sélecteur de mode -->
     <aside class="artwork-viewer-section">
+      <!-- Boutons share et audio en haut sur mobile -->
+      <div class="mobile-top-actions">
+        <button class="share-btn" @click="shareArtwork" :title="t('artwork.share')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M18 8a3 3 0 100-6 3 3 0 000 6zM6 15a3 3 0 100-6 3 3 0 000 6zM18 22a3 3 0 100-6 3 3 0 000 6zM8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98" stroke-width="2"/>
+          </svg>
+        </button>
+        <button class="audio-play-btn" @click="toggleAudio" :class="{ playing: isPlaying }">
+          <svg v-if="!isPlaying" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <svg v-else viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+          </svg>
+          <span v-if="isPlaying" class="audio-wave">
+            <span class="wave-bar"></span>
+            <span class="wave-bar"></span>
+            <span class="wave-bar"></span>
+          </span>
+        </button>
+      </div>
+
       <ViewModeSelector 
         :current-mode="viewMode"
         @update:mode="$emit('update:view-mode', $event)"
@@ -274,6 +296,11 @@ const goToScan = () => {
   min-width: 0;
 }
 
+/* Boutons en haut sur mobile - cachés par défaut */
+.mobile-top-actions {
+  display: none;
+}
+
 .viewer-wrapper {
   margin: 0 auto;
   width: 100%;
@@ -376,7 +403,7 @@ const goToScan = () => {
 .share-btn:hover {
   background: white;
   border-color: #2c5530;
-  color: #2c5530;
+  color: white;
   transform: translateY(-2px);
 }
 
@@ -570,33 +597,104 @@ const goToScan = () => {
   }
 }
 @media (max-width: 768px) {
-  .artwork-title {
-    font-size: 1.44rem;
+  .artwork-detail {
+  padding: 0 var(--space-3);
+}
+  /* Afficher les boutons en haut sur mobile */
+  .mobile-top-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
   }
+
+  /* Cacher les boutons du header sur mobile */
+  .header-actions {
+    display: none;
+  }
+
+  /* Réduire la taille de l'image */
+  .viewer-wrapper {
+    max-height: 500px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-radius: var(--border-radius);
+
+  }
+
+  /* Ajuster la section viewer */
+  .artwork-viewer-section {
+    gap: 1.5rem;
+    padding: var(--space-4) var(--space-3);
+  }
+
+  /* Like button et vues sur la même ligne */
+  .artwork-actions-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .views-count {
+    flex: 1;
+    font-size: 0.9rem;
+    padding: 0.3rem 0.8rem;
+  }
+
+  /* Boutons plus petits sur mobile */
+  .mobile-top-actions .share-btn {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+
+  .mobile-top-actions .audio-play-btn {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+  }
+
+  .mobile-top-actions .audio-play-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .mobile-top-actions .share-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .artwork-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .artwork-meta {
+    font-size: 0.95rem;
+  }
+
   .artwork-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.2rem;
+    gap: 0.8rem;
+    margin-bottom: var(--space-4);
   }
-  .audio-play-btn {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-  }
+
   .artwork-tabs {
     overflow-x: auto;
   }
+
   .tab-btn {
     white-space: nowrap;
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.95rem;
   }
+
   .artwork-text {
     font-size: 0.98rem;
   }
-  .artwork-actions-row {
-    gap: var(--space-2);
-    flex-direction: column;
-    align-items: stretch;
-  }
+
   .floating-scan-btn {
     bottom: 1.1rem;
     right: 1.1rem;
@@ -604,6 +702,7 @@ const goToScan = () => {
     padding: 0.5rem 0.78rem 0.5rem 0.52rem;
     gap: 0.35rem;
   }
+
   .float-label {
     font-size: 0.87rem;
     padding-right: 0;

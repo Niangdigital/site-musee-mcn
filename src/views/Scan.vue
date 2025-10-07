@@ -131,6 +131,10 @@ const t = (key) => {
 }
 
 @media (max-width: 768px) {
+
+  .scan-main {
+    padding: 2rem var(--space-3);
+  }
   .scan-tabs {
     flex-direction: column;
   }

@@ -159,4 +159,9 @@ const t = (key) => {
   background: #1e3a23;
   transform: translateY(-2px);
 }
+@media (max-width: 768px) {
+  .gallery-main {
+    padding: 2rem var(--space-3);
+  }
+}
 </style>

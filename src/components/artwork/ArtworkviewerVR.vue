@@ -1,19 +1,24 @@
 <template>
-  <div class="artwork-viewer-3d" ref="artworkContainer" :style="{ aspectRatio: imageAspectRatio }">
+  <div
+    class="artwork-viewer-3d"
+    ref="artworkContainer"
+    :style="{ aspectRatio: imageAspectRatio }"
+  >
     <div ref="containerRef" class="viewer-container"></div>
 
     <!-- Contrôles -->
     <div class="viewer-controls">
-      <p class="control-hint">
-        🖱️ Effet 3D immersif En réalité Virtuelle.
-      </p>
-
+      <p class="control-hint">🖱️ Effet 3D immersif en réalité virtuelle.</p>
       <button v-if="!isFullscreen" @click="toggleFullscreen" class="control-btn">
         Plein écran
       </button>
     </div>
 
-    <button v-if="isFullscreen" @click="exitFullscreenAndVR" class="exit-fullscreen">
+    <button
+      v-if="isFullscreen"
+      @click="exitFullscreenAndVR"
+      class="exit-fullscreen"
+    >
       ✖
     </button>
   </div>
@@ -22,17 +27,16 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import * as THREE from 'three'
-import { gsap } from 'gsap'
 
 const props = defineProps({
-  artwork: { type: Object, required: true }
+  artwork: { type: Object, required: true },
 })
 
 const artworkContainer = ref(null)
 const containerRef = ref(null)
 let scene, camera, renderer, imageMesh, animationFrameId
 
-const zoom = ref(1.25)
+const zoom = ref(1.0)
 const speed = ref(0.0000)
 const imageAspectRatio = ref('4/3')
 const vrMode = ref(true)
@@ -76,18 +80,25 @@ const init3DScene = (imgWidth, imgHeight) => {
   const updateCanvasSize = () => {
     const width = container.clientWidth
     let height = width / aspect
+
+    // ✅ Sur mobile, on limite la hauteur à 450px
+    if (window.innerWidth < 768 && height > 450) {
+      height = 450
+    }
+
     if (vrMode.value && window.innerWidth < 768) {
-      renderer.setSize(width / 2, height)
+      renderer.setSize(width / 1.2, height)
     } else {
       renderer.setSize(width, height)
     }
+
     camera.aspect = width / height
     camera.updateProjectionMatrix()
   }
+
   updateCanvasSize()
   window.addEventListener('resize', updateCanvasSize)
 
-  // Image exacte avec MeshBasicMaterial
   const texture = new THREE.TextureLoader().load(imageUrl.value)
   const geometry = new THREE.PlaneGeometry(3 * aspect, 3)
   const material = new THREE.MeshBasicMaterial({ map: texture, toneMapped: false })
@@ -95,7 +106,6 @@ const init3DScene = (imgWidth, imgHeight) => {
   scene.add(imageMesh)
   imageMesh.scale.set(zoom.value, zoom.value, 1)
 
-  // Rotation avec souris
   let mouseX = 0, mouseY = 0
   const onMouseMove = (e) => {
     const rect = container.getBoundingClientRect()
@@ -109,24 +119,10 @@ const init3DScene = (imgWidth, imgHeight) => {
     const time = performance.now() * speed.value
     imageMesh.rotation.y = Math.sin(time) * 0.15 + mouseX * 0.2
     imageMesh.rotation.x = Math.cos(time * 1.2) * 0.1 + mouseY * 0.15
-
-    if (vrMode.value && window.innerWidth < 768) {
-      renderer.setScissorTest(true)
-      renderer.setScissor(0, 0, renderer.domElement.width / 2, renderer.domElement.height)
-      renderer.setViewport(0, 0, renderer.domElement.width / 2, renderer.domElement.height)
-      renderer.render(scene, camera)
-      renderer.setScissor(renderer.domElement.width / 2, 0, renderer.domElement.width / 2, renderer.domElement.height)
-      renderer.setViewport(renderer.domElement.width / 2, 0, renderer.domElement.width / 2, renderer.domElement.height)
-      renderer.render(scene, camera)
-      renderer.setScissorTest(false)
-    } else {
-      renderer.render(scene, camera)
-    }
+    renderer.render(scene, camera)
   }
   animate()
 }
-
-const toggleVRMode = () => { vrMode.value = !vrMode.value }
 
 const toggleFullscreen = async () => {
   const container = artworkContainer.value
@@ -181,7 +177,7 @@ onUnmounted(() => {
   overflow: hidden;
   width: 100%;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
+  cursor: grab;
 }
 
 .viewer-container {
@@ -200,6 +196,8 @@ onUnmounted(() => {
   border-radius: var(--border-radius);
   backdrop-filter: blur(10px);
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   flex-wrap: wrap;
 }
@@ -227,7 +225,7 @@ onUnmounted(() => {
   position: absolute;
   top: var(--space-2);
   right: var(--space-2);
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   color: #fff;
   border: none;
   border-radius: var(--border-radius-sm);
@@ -236,4 +234,33 @@ onUnmounted(() => {
   z-index: 10;
   font-size: 1rem;
 }
-</style> 
+
+/* ✅ Responsive mobile */
+@media (max-width: 768px) {
+  .artwork-viewer-3d {
+    max-height: 450px;
+  }
+
+  .viewer-controls {
+    flex-direction: column;
+    bottom: var(--space-2);
+    padding: var(--space-2);
+    font-size: 0.75rem;
+  }
+
+  .control-btn {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .control-hint {
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  .exit-fullscreen {
+    font-size: 0.9rem;
+    padding: 0.25rem 0.4rem;
+  }
+}
+</style>

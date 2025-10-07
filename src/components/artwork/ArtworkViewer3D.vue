@@ -20,7 +20,7 @@ const containerRef = ref(null)
 let scene, camera, renderer, imageMesh, animationFrameId
 
 const zoom = ref(1.2)          // Zoom minimal
-const speed = ref(0.0007)      // Vitesse constante
+const speed = ref(0.0008)      // Vitesse constante
 const imageAspectRatio = ref('4/3')
 
 const imageUrl = computed(() => {
