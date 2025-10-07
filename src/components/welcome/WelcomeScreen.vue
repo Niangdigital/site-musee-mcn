@@ -51,7 +51,7 @@ const playAudio = async (lang) => {
   if (!audioStore.isEnabled || !audioStore.isUnlocked) return
   
   isSpeaking.value = true
-  const audioPath = `/src/assets/audio/welcome/${lang}.mp3` // Chemin vers le fichier audio
+  const audioPath = `/../assets/audio/welcome/${lang}.mp3` // Chemin vers le fichier audio
   
   try {
     await audioStore.play(audioPath, `welcome-${lang}`)

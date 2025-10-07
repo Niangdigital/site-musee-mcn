@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useLanguageStore } from '../stores/language' // ⚠️ AJOUTER CETTE LIGNE
+import { useLanguageStore } from '../stores/language.js' // ⚠️ AJOUTER CETTE LIGNE
 
 
 

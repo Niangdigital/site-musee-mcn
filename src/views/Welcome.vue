@@ -63,7 +63,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { useLanguageStore } from '../stores/language'
+import { useLanguageStore } from '../stores/language.js'
 
 const router = useRouter()
 const languageStore = useLanguageStore()

@@ -48,8 +48,8 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useArtworksStore } from '../stores/artworks'
-import { useLanguageStore } from '../stores/language'
+import { useArtworksStore } from '../stores/artworks.js'
+import { useLanguageStore } from '../stores/language.js'
 import translations from '../assets/data/translations.json'
 import Header from '../components/layout/Header.vue'
 import Footer from '../components/layout/Footer.vue'
