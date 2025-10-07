@@ -55,14 +55,25 @@ const router = useRouter()
 const languageStore = useLanguageStore()
 const scanMode = ref('qr')
 
+// MODIFICATION ICI
 const handleScanSuccess = (data) => {
   try {
+    // Essaye de parser comme du JSON (cas QR code JSON)
     const parsed = JSON.parse(data)
     if (parsed.artworkId) {
       router.push({ name: 'Artwork', params: { id: parsed.artworkId } })
+      return
     }
   } catch (e) {
-    console.error('Invalid QR code format:', e)
+    // Si ce n'est pas du JSON, check si c'est une URL
+    if (typeof data === 'string' && data.startsWith('http')) {
+      // Redirige vers l'URL du QR code
+      window.location.href = data
+      return
+    }
+    // Sinon, c'est du texte non reconnu
+    console.error('QR code non reconnu :', data)
+    // Tu peux afficher un message à l'utilisateur ici
   }
 }
 
