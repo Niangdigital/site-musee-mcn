@@ -1,12 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useLanguageStore } from '../stores/language' // ⚠️ AJOUTER CETTE LIGNE
 
+
+
 const routes = [
   {
     path: '/',
     name: 'Welcome',
     component: () => import('../views/Welcome.vue'),
-    meta: { requiresLanguage: false }
+    meta: { requiresLanguage: true }
   },
   {
     path: '/home',
