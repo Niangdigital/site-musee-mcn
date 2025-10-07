@@ -21,7 +21,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useLanguageStore } from '../../stores/language'
+import { useLanguageStore } from '../../stores/language.js'
 import translations from '../../assets/data/translations.json'
 import qrScanner from '../../utils/qrScanner.js'
 
