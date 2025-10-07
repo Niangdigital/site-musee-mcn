@@ -15,7 +15,6 @@
       </div>
     </div>
     
-    <p v-if="error" class="scanner-error">{{ error }}</p>
   </div>
 </template>
 
