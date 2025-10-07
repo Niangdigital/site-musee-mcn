@@ -329,5 +329,63 @@
       "fr": "Plus récents", 
       "en": "Most recent"
     }
+  },
+
+  "fr": {
+    "footer": {
+      "about": "À Propos",
+      "aboutText": "Le Musée virtuel des Civilisations Noires célèbre la richesse et la diversité du patrimoine africain à travers une expérience immersive et interactive.",
+      "quickLinks": "Liens Rapides",
+      "information": "Informations",
+      "contact": "Contact",
+      "exhibitions": "Expositions",
+      "faq": "FAQ",
+      "privacy": "Confidentialité",
+      "newsletter": "Newsletter",
+      "newsletterText": "Restez informé de nos dernières expositions et événements",
+      "emailPlaceholder": "Votre email",
+      "subscribe": "S'inscrire",
+      "rights": "Tous droits réservés",
+      "terms": "Conditions",
+      "cookies": "Cookies"
+    }
+  },
+  "en": {
+    "footer": {
+      "about": "About",
+      "aboutText": "The Virtual Museum of Black Civilizations celebrates the richness and diversity of African heritage through an immersive and interactive experience.",
+      "quickLinks": "Quick Links",
+      "information": "Information",
+      "contact": "Contact",
+      "exhibitions": "Exhibitions",
+      "faq": "FAQ",
+      "privacy": "Privacy",
+      "newsletter": "Newsletter",
+      "newsletterText": "Stay informed about our latest exhibitions and events",
+      "emailPlaceholder": "Your email",
+      "subscribe": "Subscribe",
+      "rights": "All rights reserved",
+      "terms": "Terms",
+      "cookies": "Cookies"
+    }
+  },
+  "wo": {
+    "footer": {
+      "about": "Ci Ëttu",
+      "aboutText": "Musée Virtuel bu Njaxu Njabootu Yàllaay dimbali na yoon ak njëkk bu Afrik ci bëgg-bëgg bu am solo.",
+      "quickLinks": "Lëkk yu Gaaw",
+      "information": "Xabaar",
+      "contact": "Jokkoo",
+      "exhibitions": "Wonewi",
+      "faq": "Lakk",
+      "privacy": "Suturat",
+      "newsletter": "Newsletter",
+      "newsletterText": "Am xabaar yu bees ci wonewi ak jalé",
+      "emailPlaceholder": "Sa email",
+      "subscribe": "Bind",
+      "rights": "Yépp mooy sañ-sañu MCA",
+      "terms": "Mbirum",
+      "cookies": "Cookies"
+    }
   }
 }

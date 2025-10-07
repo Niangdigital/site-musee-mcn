@@ -48,7 +48,7 @@ import { useLanguageStore } from '../stores/language'
 import translations from '../assets/data/translations.json'
 import Header from '../components/layout/Header.vue'
 import Footer from '../components/layout/Footer.vue'
-import QRScanner from '../components/scanner/ QRScanner.vue'
+import QRScanner from '../components/scanner/QRScanner.vue'
 import CodeInput from '../components/scanner/CodeInput.vue'
 
 const router = useRouter()
