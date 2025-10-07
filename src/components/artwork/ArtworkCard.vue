@@ -1,8 +1,14 @@
 <template>
   <router-link :to="`/artwork/${artwork.id}`" class="artwork-card">
     <div class="artwork-image">
-      <img :src="artwork.image" :alt="title"> {{ image }}</img> />
-
+      <img :src="imageUrl" :alt="title" @error="onImageError" />
+      <div v-if="imageError" class="image-error">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </div>
       <span v-if="artwork.isNew" class="new-badge">{{ t('artwork.new') }} ✨</span>
     </div>
     <div class="artwork-info">
@@ -17,7 +23,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useLanguageStore } from '../../stores/language'
 import translations from '../../assets/data/translations.json'
 import LikesCount from './LikesCount.vue'
@@ -31,10 +37,29 @@ const props = defineProps({
 
 const languageStore = useLanguageStore()
 const lang = computed(() => languageStore.current)
+const imageError = ref(false)
 
 const title = computed(() => props.artwork.title[lang.value])
 const artist = computed(() => props.artwork.artist[lang.value])
 const period = computed(() => props.artwork.period[lang.value])
+
+// Génération automatique de l'URL de l'image à partir de l'ID
+const imageUrl = computed(() => {
+  try {
+    return new URL(
+      `/src/assets/images/artworks/${props.artwork.id}.jpg`, 
+      import.meta.url
+    ).href
+  } catch (e) {
+    console.error('Image not found:', props.artwork.id, e)
+    return ''
+  }
+})
+
+const onImageError = () => {
+  imageError.value = true
+  console.error('Failed to load image:', props.artwork.id)
+}
 
 const t = (key) => {
   const keys = key.split('.')
@@ -73,6 +98,22 @@ const t = (key) => {
   height: 100%;
   object-fit: cover;
   transition: transform var(--transition-normal);
+}
+
+.image-error {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-gray-100);
+  color: var(--color-gray-400);
+}
+
+.image-error svg {
+  width: 48px;
+  height: 48px;
+  stroke-width: 1.5;
 }
 
 .new-badge {
