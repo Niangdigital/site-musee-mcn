@@ -2,26 +2,33 @@
   <div class="artwork-detail">
     <!-- SECTION GAUCHE : Viewer & Sélecteur de mode -->
     <aside class="artwork-viewer-section">
-      <!-- Boutons share et audio en haut sur mobile -->
+      <!-- Boutons retour, share et audio en haut sur mobile -->
       <div class="mobile-top-actions">
-        <button class="share-btn" @click="shareArtwork" :title="t('artwork.share')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M18 8a3 3 0 100-6 3 3 0 000 6zM6 15a3 3 0 100-6 3 3 0 000 6zM18 22a3 3 0 100-6 3 3 0 000 6zM8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98" stroke-width="2"/>
+        <button class="back-btn" @click="router.back()" title="Retour">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
         </button>
-        <button class="audio-play-btn" @click="toggleAudio" :class="{ playing: isPlaying }">
-          <svg v-if="!isPlaying" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M8 5v14l11-7z"/>
-          </svg>
-          <svg v-else viewBox="0 0 24 24" fill="currentColor">
-            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
-          </svg>
-          <span v-if="isPlaying" class="audio-wave">
-            <span class="wave-bar"></span>
-            <span class="wave-bar"></span>
-            <span class="wave-bar"></span>
-          </span>
-        </button>
+        <div class="mobile-actions-right">
+          <button class="share-btn" @click="shareArtwork" :title="t('artwork.share')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M18 8a3 3 0 100-6 3 3 0 000 6zM6 15a3 3 0 100-6 3 3 0 000 6zM18 22a3 3 0 100-6 3 3 0 000 6zM8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98" stroke-width="2"/>
+            </svg>
+          </button>
+          <button class="audio-play-btn" @click="toggleAudio" :class="{ playing: isPlaying }">
+            <svg v-if="!isPlaying" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg v-else viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+            </svg>
+            <span v-if="isPlaying" class="audio-wave">
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+            </span>
+          </button>
+        </div>
       </div>
 
       <ViewModeSelector 
@@ -42,6 +49,11 @@
     <!-- SECTION DROITE : Infos & Actions -->
     <section class="artwork-content">
       <header class="artwork-header">
+        <button class="back-btn desktop-back" @click="router.back()" title="Retour">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+        </button>
         <div class="header-info">
           <h1 class="artwork-title">{{ title }}</h1>
           <div class="artwork-meta">
@@ -370,6 +382,43 @@ const goToScan = () => {
   display: none;
 }
 
+.mobile-actions-right {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.back-btn {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  color: #a0522d;
+}
+
+.back-btn:hover {
+  background: #a0522d;
+  border-color: #a0522d;
+  color: white;
+  transform: translateX(-2px);
+}
+
+.back-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.desktop-back {
+  align-self: flex-start;
+}
+
 .viewer-wrapper {
   margin: 0 auto;
   width: 100%;
@@ -679,14 +728,28 @@ const goToScan = () => {
   /* Afficher les boutons en haut sur mobile */
   .mobile-top-actions {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
     gap: 0.75rem;
     margin-bottom: 1rem;
+  }
+
+  /* Cacher le bouton retour desktop sur mobile */
+  .desktop-back {
+    display: none;
   }
 
   /* Cacher les boutons du header sur mobile */
   .header-actions {
     display: none;
+  }
+
+  /* Boutons plus petits sur mobile */
+  .mobile-top-actions .back-btn,
+  .mobile-top-actions .share-btn {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
   }
 
   /* Réduire la taille de l'image */
@@ -695,7 +758,6 @@ const goToScan = () => {
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     border-radius: var(--border-radius);
-
   }
 
   /* Ajuster la section viewer */
@@ -718,13 +780,6 @@ const goToScan = () => {
     padding: 0.3rem 0.8rem;
   }
 
-  /* Boutons plus petits sur mobile */
-  .mobile-top-actions .share-btn {
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-  }
-
   .mobile-top-actions .audio-play-btn {
     width: 50px;
     height: 50px;
@@ -736,6 +791,7 @@ const goToScan = () => {
     height: 22px;
   }
 
+  .mobile-top-actions .back-btn svg,
   .mobile-top-actions .share-btn svg {
     width: 18px;
     height: 18px;
