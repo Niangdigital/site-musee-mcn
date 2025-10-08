@@ -71,11 +71,7 @@
         </div>
       </header>
       <p v-if="isPlaying" class="audio-status">Lecture en cours...</p>
-      <VideoPlayer 
-        v-if="artwork.video && artwork.video[lang]"
-        :artwork-id="artwork.id"
-        :title="title"
-      />
+   
 
       <!-- Onglets -->
       <nav class="artwork-tabs" aria-label="Artwork Tabs">
@@ -106,6 +102,11 @@
         <p v-else-if="activeTab === 'history'">{{ history }}</p>
         <p v-else-if="activeTab === 'cultural'">{{ cultural }}</p>
       </div>
+         <VideoPlayer 
+        v-if="artwork.video && artwork.video[lang]"
+        :artwork-id="artwork.id"
+        :title="title"
+      />
       <CommentsSection :artwork-id="artwork.id" />
     </section>
 

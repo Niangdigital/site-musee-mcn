@@ -1,6 +1,6 @@
 [
   {
-    "id": "artwork-1",
+    "id": "artwork-2",
     "isNew": true,  
     "code": "MCA-001",  
      "title": {
@@ -49,7 +49,7 @@
     
   },
   {
-    "id": "artwork-2",
+    "id": "artwork-1",
     "code": "MCA-002",
   "title": {
     "fr": "Statue Nkisi Nkondi",
@@ -99,9 +99,9 @@
     "isNew": true,  
     "code": "MCA-001",  
      "title": {
-    "fr": "Masque Ngil",
-    "en": "Ngil Mask",
-    "wo": "Masque Ngil"
+    "fr": "Masque Punu-Lumbo",
+    "en": "Punu-Lumbo Mask",
+    "wo": "Masque Punu-Lumbo"
   },
   "artist": {
     "fr": "Artiste anonyme",
@@ -147,9 +147,9 @@
     "id": "artwork-4",
     "code": "MCA-002",
   "title": {
-    "fr": "Statue Nkisi Nkondi",
-    "en": "Nkisi Nkondi Statue",
-    "wo": "Statue Nkisi Nkondi"
+    "fr": "Masque Sowei",
+    "en": "Sowei Mask",
+    "wo": "Masque Sowei"
   },
   "artist": {
     "fr": "Artiste anonyme",
@@ -197,9 +197,9 @@
     "id": "artwork-5",
     "code": "MCA-003",
   "title": {
-    "fr": "Statue Nkisi Nkondi",
-    "en": "Nkisi Nkondi Statue",
-    "wo": "Statue Nkisi Nkondi"
+     "fr": "Masque N’to",
+    "en": "N’to Mask",
+    "wo": "Masque N’to"
   },
   
   "artist": {
@@ -244,9 +244,9 @@
     "id": "artwork-6",
     "code": "MCA-003",
   "title": {
-    "fr": "Statue Nkisi Nkondi",
-    "en": "Nkisi Nkondi Statue",
-    "wo": "Statue Nkisi Nkondi"
+  "fr": "Masque Kpeliye’e",
+    "en": "Kpeliye’e Mask",
+    "wo": "Masque Kpeliye’e"
   },
   
   "artist": {
@@ -291,9 +291,9 @@
     "id": "artwork-7",
     "code": "MCA-003",
   "title": {
-    "fr": "Statue Nkisi Nkondi",
-    "en": "Nkisi Nkondi Statue",
-    "wo": "Statue Nkisi Nkondi"
+     "fr": "Masque Gu",
+    "en": "Gu Mask",
+    "wo": "Masque Gu"
   },
   
   "artist": {
@@ -338,9 +338,9 @@
     "id": "artwork-8",
     "code": "MCA-003",
   "title": {
-    "fr": "Statue Nkisi Nkondi",
-    "en": "Nkisi Nkondi Statue",
-    "wo": "Statue Nkisi Nkondi"
+  "fr": "Masque Do",
+    "en": "Do Mask",
+    "wo": "Masque Do"
   },
   
   "artist": {
@@ -385,9 +385,9 @@
     "id": "artwork-9",
     "code": "MCA-003",
   "title": {
-    "fr": "Statue Nkisi Nkondi",
-    "en": "Nkisi Nkondi Statue",
-    "wo": "Statue Nkisi Nkondi"
+      "fr": "Masque Kòmòkun",
+    "en": "Kòmòkun Mask",
+    "wo": "Masque Kòmòkun"
   },
   
   "artist": {
@@ -478,9 +478,9 @@
     "id": "artwork-11",
     "code": "MCA-003",
   "title": {
-    "fr": "Statue Nkisi Nkondi",
-    "en": "Nkisi Nkondi Statue",
-    "wo": "Statue Nkisi Nkondi"
+     "fr": "Masque Yombe",
+    "en": "Yombe Mask",
+    "wo": "Masque Yombe"
   },
   
   "artist": {
@@ -524,9 +524,9 @@
     "id": "artwork-12",
     "code": "MCA-003",
   "title": {
-    "fr": "Statue Nkisi Nkondi",
-    "en": "Nkisi Nkondi Statue",
-    "wo": "Statue Nkisi Nkondi"
+    "fr": "Masque Bamum",
+    "en": "Bamum Mask",
+    "wo": "Masque Bamum"
   },
   
   "artist": {
@@ -571,9 +571,9 @@
     "id": "artwork-13",
     "code": "MCA-003",
     "title": {
-      "fr": "Statue Nkisi Nkondi",
-      "en": "Nkisi Nkondi Statue",
-      "wo": "Statue Nkisi Nkondi"
+        "fr": "Masque Mblo",
+    "en": "Mblo Mask",
+    "wo": "Masque Mblo"
     },
     "artist": {
       "fr": "Artiste anonyme",
@@ -617,9 +617,9 @@
     "id": "artwork-14",
     "code": "MCA-003",
   "title": {
-    "fr": "Statue Nkisi Nkondi",
-    "en": "Nkisi Nkondi Statue",
-    "wo": "Statue Nkisi Nkondi"
+        "fr": "Masque Woyo",
+    "en": "Woyo Mask",
+    "wo": "Masque Woyo"
   },
   
   "artist": {
