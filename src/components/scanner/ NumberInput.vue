@@ -145,6 +145,7 @@ const clearError = () => {
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
+  
 }
 
 .input-form {

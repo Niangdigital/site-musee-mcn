@@ -5,7 +5,7 @@
       :key="lang"
       class="lang-btn"
       :class="{ active: lang === current }"
-      @click="setLanguage(lang)"
+      @click="changeLanguage(lang)"
       :title="getLabel(lang)"
     >
       {{ lang.toUpperCase() }}
@@ -17,16 +17,14 @@
 import { computed } from 'vue'
 import { useLanguageStore } from '../../stores/language'
 
-// Ajout pour pouvoir émettre
-const emit = defineEmits(['language-changed'])
-
 const languageStore = useLanguageStore()
 const languages = computed(() => languageStore.available)
 const current = computed(() => languageStore.current)
 
-const setLanguage = (lang) => {
+const changeLanguage = (lang) => {
+  console.log('[LanguageSwitcher] Changement vers:', lang)
   languageStore.setLanguage(lang)
-  emit('language-changed') // L'événement est bien émis quand on clique
+  // PAS DE RELOAD - le listener dans ArtworkDetail gère tout
 }
 
 const getLabel = (lang) => languageStore.labels[lang]

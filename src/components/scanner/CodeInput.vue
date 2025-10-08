@@ -109,12 +109,12 @@ const submitCode = () => {
 
 h3 {
   font-size: 1.5rem;
-  color: #2c5530;
+  color: var(--color-gray-900);
   margin-bottom: 0.5rem;
 }
 
 .hint {
-  color: #6b7280;
+  color: var(--color-gray-900);
   font-size: 0.938rem;
   margin-bottom: 2rem;
 }
@@ -137,7 +137,7 @@ form {
 
 .code-field:focus {
   outline: none;
-  border-color: #2c5530;
+  border-color: #a0522d;
 }
 
 .error-msg {
@@ -150,7 +150,7 @@ form {
   width: 100%;
   padding: 1rem;
   font-size: 1.125rem;
-  background: #2c5530;
+  background: #a0522d;
   color: white;
   border: none;
   border-radius: 0.5rem;
@@ -160,7 +160,10 @@ form {
 }
 
 .submit-btn:hover:not(:disabled) {
-  background: #1e3a23;
+    background: white;
+    border-radius: var(--border-radius) 2px#a0522d;
+  color: #a0522d;
+
 }
 
 .submit-btn:disabled {
@@ -201,7 +204,7 @@ form {
 
 .example-btn:hover {
   background: #e5e7eb;
-  border-color: #2c5530;
+  border-color:      #a0522d;
   transform: none;
   box-shadow: none;
 }

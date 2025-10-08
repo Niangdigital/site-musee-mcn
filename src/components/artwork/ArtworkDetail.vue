@@ -152,6 +152,7 @@ const activeTab = ref('description')
 const isPlaying = ref(false)
 const audioElement = ref(null)
 const lastTime = ref(0)
+let unsubscribe = null
 
 const audioEnabled = ref(true)
 const savedAudioState = localStorage.getItem('audioEnabled')
@@ -189,6 +190,8 @@ const t = (key) => {
 }
 
 onMounted(async () => {
+  console.log('[ArtworkDetail] 🎨 Montage du composant, langue:', lang.value)
+  
   audioElement.value = new Audio(audioUrl.value)
   audioElement.value.currentTime = lastTime.value
   audioElement.value.muted = !audioEnabled.value
@@ -197,7 +200,9 @@ onMounted(async () => {
     try {
       await audioElement.value.play()
       isPlaying.value = true
+      console.log('[ArtworkDetail] ✅ Audio démarré avec succès')
     } catch (err) {
+      console.warn('[ArtworkDetail] ⚠️ Autoplay bloqué (normal sur Safari):', err.name)
       isPlaying.value = false
       lastTime.value = 0
     }
@@ -207,6 +212,41 @@ onMounted(async () => {
     isPlaying.value = false
     lastTime.value = 0
   })
+
+  // Écouter les changements de langue (SANS RELOAD)
+  unsubscribe = languageStore.onLanguageChange(async (newLang, oldLang) => {
+    console.log(`[ArtworkDetail] 🌍 Changement de langue: ${oldLang} → ${newLang}`)
+    
+    // Arrêter l'ancien audio
+    if (audioElement.value) {
+      audioElement.value.pause()
+      audioElement.value.currentTime = 0
+      console.log('[ArtworkDetail] 🛑 Ancien audio arrêté')
+    }
+    
+    // Charger le nouvel audio dans la nouvelle langue
+    console.log('[ArtworkDetail] 📂 Chargement du nouvel audio:', audioUrl.value)
+    audioElement.value = new Audio(audioUrl.value)
+    audioElement.value.muted = !audioEnabled.value
+    audioElement.value.addEventListener('ended', () => {
+      isPlaying.value = false
+      lastTime.value = 0
+    })
+
+    // Lancer automatiquement si l'audio était activé
+    if (audioEnabled.value) {
+      try {
+        await audioElement.value.play()
+        isPlaying.value = true
+        console.log('[ArtworkDetail] ✅ Nouvel audio démarré (langue:', newLang, ')')
+      } catch (err) {
+        console.warn('[ArtworkDetail] ⚠️ Impossible de démarrer l\'audio:', err.name)
+        isPlaying.value = false
+      }
+    }
+  })
+  
+  console.log('[ArtworkDetail] 👂 Listener de langue enregistré')
 })
 
 const toggleAudio = async () => {
@@ -221,14 +261,19 @@ const toggleAudio = async () => {
       audioElement.value.pause()
       lastTime.value = audioElement.value.currentTime
       isPlaying.value = false
+      console.log('[ArtworkDetail] ⏸️ Audio mis en pause')
     } else if (audioEnabled.value) {
       await audioElement.value.play()
       isPlaying.value = true
+      console.log('[ArtworkDetail] ▶️ Audio repris')
     }
-  } catch (err) {}
+  } catch (err) {
+    console.error('[ArtworkDetail] ❌ Erreur toggle audio:', err)
+  }
 }
 
 watch(() => props.artwork.id, async () => {
+  console.log('[ArtworkDetail] 🔄 Changement d\'artwork')
   activeTab.value = 'description'
   if (audioElement.value) {
     audioElement.value.pause()
@@ -242,6 +287,21 @@ watch(() => props.artwork.id, async () => {
     isPlaying.value = false
     lastTime.value = 0
   })
+  
+  // Rejouer si audio activé
+  if (audioEnabled.value) {
+    try {
+      await audioElement.value.play()
+      isPlaying.value = true
+    } catch (err) {
+      console.warn('[ArtworkDetail] Autoplay bloqué sur changement artwork')
+    }
+  }
+})
+
+// Watcher pour débugger isPlaying
+watch(isPlaying, (newVal) => {
+  console.log('[ArtworkDetail] 🎵 isPlaying changé:', newVal)
 })
 
 const shareArtwork = async () => {
@@ -263,9 +323,17 @@ const shareArtwork = async () => {
 }
 
 onUnmounted(() => {
+  console.log('[ArtworkDetail] 🧹 Démontage du composant')
+  
   if (audioElement.value) {
     audioElement.value.pause()
     audioElement.value = null
+  }
+  
+  // Nettoyer l'écouteur de changement de langue
+  if (unsubscribe) {
+    unsubscribe()
+    console.log('[ArtworkDetail] 🗑️ Listener de langue nettoyé')
   }
 })
 
@@ -359,7 +427,7 @@ const goToScan = () => {
 .artwork-title {
   margin: 0 0 0.7rem 0;
   font-size: 2.2rem;
-  color: var(--color-primary-dark);
+  color: var(--color-gray-900);
   line-height: 1.1;
   word-break: break-word;
 }
@@ -393,7 +461,7 @@ const goToScan = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #2c5530;
+  background: #a0522d;
   border: 2px solid #e5e7eb;
   border-radius: 0.5rem;
   cursor: pointer;
@@ -402,8 +470,8 @@ const goToScan = () => {
 
 .share-btn:hover {
   background: white;
-  border-color: #2c5530;
-  color: white;
+  border-color: #a0522d;
+  color:  #a0522d;
   transform: translateY(-2px);
 }
 
@@ -428,7 +496,10 @@ const goToScan = () => {
 }
 
 .audio-play-btn:hover {
-  background: var(--color-primary-dark);
+  background: white;
+  border: 2px solid #a0522d;
+  color: #a0522d;
+  transform: translateY(-2px);
 }
 
 .audio-play-btn.playing {
@@ -484,7 +555,7 @@ const goToScan = () => {
   border: 1px solid #86efac;
   border-radius: 2rem;
   font-size: 0.94rem;
-  color: #166534;
+  color:#a0522d;
   margin: 0 0 1.15rem 0;
   animation: fadeIn 0.3s ease;
 }
@@ -544,10 +615,10 @@ const goToScan = () => {
   align-items: center;
   padding: 0.6rem 1rem 0.6rem 0.7rem;
   background: #f3f4f6cc;
-  border: 1.5px solid #2c5530;
+  border: 1.5px solid #a0522d;
   border-radius: 2rem;
   box-shadow: 0 3px 12px 0 rgb(44 85 48 / 9%);
-  color: #2c5530;
+  color: #a0522d;
   cursor: pointer;
   transition: background 0.15s, box-shadow 0.15s, color 0.15s;
   font-size: 1rem;
@@ -556,7 +627,7 @@ const goToScan = () => {
   backdrop-filter: blur(3px);
 }
 .floating-scan-btn:hover {
-  background: #2c5530;
+  background: #a0522d;
   color: #fff;
   box-shadow: 0 6px 24px 0 rgb(44 85 48 / 18%);
 }

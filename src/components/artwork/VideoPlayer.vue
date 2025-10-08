@@ -92,7 +92,7 @@ const handlePause = () => { isPlaying.value = false }
 
 .video-header h3 {
   font-size: 1.125rem;
-  color: #2c5530;
+  color: #a0522d;
   margin: 0;
 }
 

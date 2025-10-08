@@ -87,7 +87,7 @@ const submitComment = () => {
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: #2c5530;
+  border-color: #a0522d;
 }
 
 .form-textarea {
@@ -98,7 +98,7 @@ const submitComment = () => {
 .submit-btn {
   width: 100%;
   padding: 0.75rem 1.5rem;
-  background: #2c5530;
+  background: #a0522d;
   color: white;
   border: none;
   border-radius: 0.5rem;
@@ -108,7 +108,7 @@ const submitComment = () => {
 }
 
 .submit-btn:hover:not(:disabled) {
-  background: #1e3a23;
+  background: #a0522d;
 }
 
 .submit-btn:disabled {

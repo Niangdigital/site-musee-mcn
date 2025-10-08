@@ -95,6 +95,7 @@ const t = (key) => {
   text-align: center;
 }
 
+
 .scan-instructions {
   margin-bottom: 2rem;
   font-size: 1.125rem;
@@ -119,14 +120,14 @@ const t = (key) => {
 }
 
 .tab-btn:hover {
-  border-color: #2c5530;
+  border-color: #a0522d;
   transform: none;
   box-shadow: none;
 }
 
 .tab-btn.active {
-  background: #2c5530;
-  border-color: #2c5530;
+  background: #a0522d;
+  border-color: #a0522d;
   color: white;
 }
 

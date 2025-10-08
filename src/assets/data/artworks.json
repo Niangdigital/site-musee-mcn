@@ -95,7 +95,7 @@
     "model3d": "src/assets/images/artworks/artwork-2.jpg"
   },
   {
-    "id": "artwork-1",
+    "id": "artwork-3",
     "isNew": true,  
     "code": "MCA-001",  
      "title": {
@@ -144,7 +144,7 @@
     
   },
   {
-    "id": "artwork-2",
+    "id": "artwork-4",
     "code": "MCA-002",
   "title": {
     "fr": "Statue Nkisi Nkondi",
@@ -194,7 +194,7 @@
 
 
     {
-    "id": "artwork-3",
+    "id": "artwork-5",
     "code": "MCA-003",
   "title": {
     "fr": "Statue Nkisi Nkondi",
@@ -241,7 +241,7 @@
     "model3d": "src/assets/images/artworks/artwork-2.jpg"
   },
     {
-    "id": "artwork-3",
+    "id": "artwork-6",
     "code": "MCA-003",
   "title": {
     "fr": "Statue Nkisi Nkondi",
@@ -288,7 +288,7 @@
     "model3d": "src/assets/images/artworks/artwork-2.jpg"
   },
     {
-    "id": "artwork-3",
+    "id": "artwork-7",
     "code": "MCA-003",
   "title": {
     "fr": "Statue Nkisi Nkondi",
@@ -335,7 +335,7 @@
     "model3d": "src/assets/images/artworks/artwork-2.jpg"
   },
     {
-    "id": "artwork-3",
+    "id": "artwork-8",
     "code": "MCA-003",
   "title": {
     "fr": "Statue Nkisi Nkondi",
@@ -382,7 +382,7 @@
     "model3d": "src/assets/images/artworks/artwork-2.jpg"
   },
     {
-    "id": "artwork-3",
+    "id": "artwork-9",
     "code": "MCA-003",
   "title": {
     "fr": "Statue Nkisi Nkondi",
@@ -428,7 +428,7 @@
     },
     "model3d": "src/assets/images/artworks/artwork-2.jpg"
   },  {
-    "id": "artwork-3",
+    "id": "artwork-10",
     "code": "MCA-003",
   "title": {
     "fr": "Statue Nkisi Nkondi",
@@ -475,7 +475,7 @@
     "model3d": "src/assets/images/artworks/artwork-2.jpg"
   },
     {
-    "id": "artwork-3",
+    "id": "artwork-11",
     "code": "MCA-003",
   "title": {
     "fr": "Statue Nkisi Nkondi",
@@ -521,7 +521,7 @@
     },
     "model3d": "src/assets/images/artworks/artwork-2.jpg"
   },  {
-    "id": "artwork-3",
+    "id": "artwork-12",
     "code": "MCA-003",
   "title": {
     "fr": "Statue Nkisi Nkondi",
@@ -568,7 +568,7 @@
     "model3d": "src/assets/images/artworks/artwork-2.jpg"
   },
   {
-    "id": "artwork-3",
+    "id": "artwork-13",
     "code": "MCA-003",
     "title": {
       "fr": "Statue Nkisi Nkondi",
@@ -614,7 +614,7 @@
     "model3d": "src/assets/images/artworks/artwork-3.jpg"
   },
     {
-    "id": "artwork-3",
+    "id": "artwork-14",
     "code": "MCA-003",
   "title": {
     "fr": "Statue Nkisi Nkondi",

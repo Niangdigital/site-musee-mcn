@@ -78,7 +78,7 @@ onMounted(() => {
 
 .comments-header h3 {
   font-size: 1.5rem;
-  color: #2c5530;
+  color: #a0522d;
   margin: 0;
 }
 
