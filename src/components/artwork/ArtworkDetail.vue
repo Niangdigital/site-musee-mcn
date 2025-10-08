@@ -490,21 +490,25 @@ const goToScan = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-primary);
+  background: white;
   border-radius: 50%;
+  border: 2px solid #a0522d;
+  color: #a0522d;
   transition: all var(--transition-fast);
 }
 
 .audio-play-btn:hover {
-  background: white;
+  background: #a0522d;
   border: 2px solid #a0522d;
-  color: #a0522d;
+  color:white ;
   transform: translateY(-2px);
 }
 
 .audio-play-btn.playing {
-  background: var(--color-accent);
+  background: white;
   animation: pulse 1.5s ease-in-out infinite;
+  color: #a0522d;
+  border: 2px solid #a0522d;
 }
 
 .audio-play-btn svg {

@@ -114,16 +114,16 @@ const languageBgUrl = computed(() => {
 // Styles de background avec gradient
 const splashBgStyle = computed(() => {
   if (museumBgUrl.value) {
-    return `linear-gradient(135deg, rgba(44, 85, 48, 0.95) 0%, rgba(30, 58, 35, 0.95) 100%), url('${museumBgUrl.value}')`
+    return `linear-gradient(135deg, rgba(160, 82, 45, 0.95) 0%, rgba(115, 59, 32, 0.95) 100%), url('${museumBgUrl.value}')`
   }
-  return 'linear-gradient(135deg, #2c5530 0%, #1e3a23 100%)'
+  return 'linear-gradient(135deg, #a0522d 0%, #733b20 100%)'
 })
 
 const welcomeBgStyle = computed(() => {
   if (languageBgUrl.value) {
-    return `linear-gradient(135deg, rgba(44, 85, 48, 0.90) 0%, rgba(30, 58, 35, 0.90) 100%), url('${languageBgUrl.value}')`
+    return `linear-gradient(135deg, rgba(160, 82, 45, 0.90) 0%, rgba(115, 59, 32, 0.90) 100%), url('${languageBgUrl.value}')`
   }
-  return 'linear-gradient(135deg, #2c5530 0%, #1e3a23 100%)'
+  return 'linear-gradient(135deg, #a0522d 0%, #733b20 100%)'
 })
 
 // Génération automatique des URLs audio
@@ -275,7 +275,7 @@ onUnmounted(() => {
 .splash-bg {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #2c5530 0%, #1e3a23 100%);
+  background: linear-gradient(135deg, #a0522d 0%, #733b20 100%);
   background-size: cover;
   background-position: center;
   display: flex;
@@ -305,7 +305,7 @@ onUnmounted(() => {
   padding: 1.25rem 2.5rem;
   font-size: 1.25rem;
   background: #d4af37;
-  color: #2c5530;
+  color: #a0522d;
   border: 2px solid #d4af37;
   border-radius: 0.75rem;
   cursor: pointer;
@@ -387,7 +387,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #2c5530 0%, #1e3a23 100%);
+  background: linear-gradient(135deg, #a0522d 0%, #733b20 100%);
   background-size: cover;
   background-position: center;
   padding: 2rem;
